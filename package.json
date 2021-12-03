@@ -1,0 +1,24 @@
+{
+  "name": "test-youtubesearch",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/franpoh/test-youtubesearch.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/franpoh/test-youtubesearch/issues"
+  },
+  "homepage": "https://github.com/franpoh/test-youtubesearch#readme",
+  "dependencies": {
+    "axios": "^0.24.0",
+    "dotenv": "^10.0.0",
+    "googleapis": "^92.0.0"
+  }
+}

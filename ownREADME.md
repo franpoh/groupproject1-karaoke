@@ -21,3 +21,24 @@ google.youtube("v3").search.list({
         console.log(`Title: ${item.snippet.title}\nURL: https://www.youtube.com/watch?v=${item.id.videoId}`)
     })
 }).catch((err) => console.log(err));
+
+this.addHistory = this.addHistory.bind(this);
+
+componentDidMount() {
+        this.setState({
+            ...this.state,
+            history: JSON.parse(localStorage.getItem("history")),
+        })
+    }
+
+    addHistory(event) {
+        const historyitem = {
+            title: this.state.searchTitle,
+            url: this.state.searchURL,
+        }
+
+        console.log("History Item: ", historyitem);
+
+        this.state.history.push(historyitem);
+        localStorage.setItem("history", JSON.stringify(this.state.history));
+    }

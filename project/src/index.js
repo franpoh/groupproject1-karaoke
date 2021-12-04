@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import YouSearch from "./screens/Search.js";
+import YouSearch from "./components/Search.js";
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(

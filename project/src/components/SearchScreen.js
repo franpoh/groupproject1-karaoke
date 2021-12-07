@@ -7,6 +7,7 @@ import FavButton from "./list/FavButton.js";
 import Player from "./Player.js";
 import SelectList from "./list/SelectList.js";
 import HandleInput from "./HandleInput.js";
+import Main from "./routing/Main.js";
 
 import Search from './Search-aaa';
 import MainScreen from './MainScreen';

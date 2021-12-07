@@ -8,6 +8,9 @@ import Player from "./Player.js";
 import SelectList from "./list/SelectList.js";
 import HandleInput from "./HandleInput.js";
 
+import Search from './Search-aaa';
+import MainScreen from './MainScreen';
+
 class SearchScreen extends React.Component {
     constructor() {
         super();
@@ -144,6 +147,8 @@ class SearchScreen extends React.Component {
                     </div>
                     <div className="lyricbox">
                         <p>This is for Aunt Pyone's lyrics</p>
+                        <Search />
+                        <MainScreen />
                     </div>
                     <div className="relatedvids">
                         <p>This is for related videos</p>

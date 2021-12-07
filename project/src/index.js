@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <SearchScreen />
+    <SearchScreen />    
   </React.StrictMode>,
   document.getElementById('root')
 );

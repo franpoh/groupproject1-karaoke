@@ -1,12 +1,18 @@
 import React from "react";
+<<<<<<< HEAD
 import "./SearchLayout.css";
 
+=======
+>>>>>>> c418b87370f69382133d1f78f0c29bff2ab3cd29
 import PrevNext from "./PrevNext.js";
 import updateList from "./list/UpdateList.js";
 import FavButton from "./list/FavButton.js";
 import Player from "./Player.js";
 import SelectList from "./list/SelectList.js";
 import HandleInput from "./HandleInput.js";
+import Main from "./routing/Main.js";
+
+
 
 import Search from './Search-aaa';
 import MainScreen from './MainScreen';
@@ -103,6 +109,7 @@ class SearchScreen extends React.Component {
         const { history } = this.state;
 
         return (
+<<<<<<< HEAD
             <div className="webpage">
                 <h1 id="header">The Karaoke Website</h1>
                 <div className="topnavbar">
@@ -162,6 +169,58 @@ class SearchScreen extends React.Component {
                     </div>
                 </div>
             </div>
+=======
+            <>
+                <div>
+                    <Main/>
+                    <div className = "navbar">
+                        {/* Search Bar Input */}
+                        <HandleInput 
+                            input = {input}    
+                            handleInputState = {this.handleInputState}
+                            searchState = {this.searchState}
+                        />
+                        {/* Favourites and History Dropdown Lists */}
+                        <SelectList 
+                            selectListState = {this.selectListState}
+                            favourites = {favourites}
+                            history = {history}
+                        />
+                    </div>
+                    <div className = "videobox">
+                        {/* YouTube Player */}
+                        <Player 
+                            list = {history}
+                            title = {searchTitle}
+                            url = {searchURL}
+                            addListState = {this.addListState}
+                        />
+                        <h3>{searchTitle}</h3>
+                        <div>
+                            {/* Previous and Next Buttons */}
+                            <PrevNext
+                                prevNextState = {this.prevNextState}
+                                index = {searchIndex}
+                            />
+                            {/* Add to Favourites Button */}
+                            <FavButton
+                                list = {favourites}
+                                title = {searchTitle}
+                                url = {searchURL}
+                                addListState = {this.addListState}
+                            />
+                        </div>
+                        <div>
+                            <select className = "ttsconfig"></select>
+                            <button className = "tts">Activate Text-to-Speech</button>
+                        </div>
+                    </div>
+                    <div className = "lyricbox"></div>
+                    {/* This is for Aunt Pyone's lyrics */}
+                    <div className = "relatedvids"></div>
+                </div>
+            </>
+>>>>>>> c418b87370f69382133d1f78f0c29bff2ab3cd29
         )
     }
 }

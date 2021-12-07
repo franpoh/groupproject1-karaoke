@@ -1,5 +1,8 @@
+// Receive song title and artist search inputs / return search textbox elements and search button
+
 import React from "react";
 import search from "./Search";
+import "../SearchLayout.css";
 
 function HandleInput(props) {
     function setInput(event) {
@@ -12,7 +15,9 @@ function HandleInput(props) {
     }
 
     return (
-        <form onSubmit={(event) => search(props, event)}> 
+        <form 
+            onSubmit={(event) => search(props, event)}
+        > 
             <input type="text" placeholder="Enter Song Title Here!" id="inputsong" value={props.inputSong} onChange={setInput}></input>
             <input type="text" placeholder="Enter Artist Name Here!" id="inputartist" value={props.inputArtist} onChange={setInput}></input>
             <button id="searchbutton" disabled>Search</button>

@@ -4,6 +4,7 @@ import React from 'react';
 import YouTube from 'react-youtube';
 
 import addList from './list/AddList';
+import "./SearchLayout.css";
 
 function Player(props) {
     const opts = { // setting optional parameters for player

@@ -1,4 +1,5 @@
 import React from "react";
+import "./SearchLayout.css";
 
 import PrevNext from "./PrevNext.js";
 import updateList from "./list/UpdateList.js";
@@ -28,7 +29,7 @@ class SearchScreen extends React.Component {
 
     async componentDidMount() {
         let favourites = await updateList("favourites"); // updating favourites/history from Windows.localStorage("favourites"/"history")
-        let history = await updateList("history"); 
+        let history = await updateList("history");
 
         this.setState({ // and setting this.state.history/favourites
             ...this.state,
@@ -93,53 +94,61 @@ class SearchScreen extends React.Component {
         const { history } = this.state;
 
         return (
-            <div>
-                <h1>The Karaoke Website</h1>
-                <div className = "navbar">
+            <div className="webpage">
+                <h1 id="header">The Karaoke Website</h1>
+                <div className="topnavbar">
                     {/* Search Bar Input */}
-                    <HandleInput 
-                        input = {input}    
-                        handleInputState = {this.handleInputState}
-                        searchState = {this.searchState}
+                    <HandleInput
+                        input={input}
+                        handleInputState={this.handleInputState}
+                        searchState={this.searchState}
                     />
                     {/* Favourites and History Dropdown Lists */}
-                    <SelectList 
-                        selectListState = {this.selectListState}
-                        favourites = {favourites}
-                        history = {history}
+                    <SelectList
+                        selectListState={this.selectListState}
+                        favourites={favourites}
+                        history={history}
                     />
                 </div>
-                <div className = "videobox">
-                    {/* YouTube Player */}
-                    <Player 
-                        list = {history}
-                        title = {searchTitle}
-                        url = {searchURL}
-                        addListState = {this.addListState}
-                    />
-                    <h3>{searchTitle}</h3>
-                    <div>
-                        {/* Previous and Next Buttons */}
-                        <PrevNext
-                            prevNextState = {this.prevNextState}
-                            index = {searchIndex}
-                        />
-                        {/* Add to Favourites Button */}
-                        <FavButton
-                            list = {favourites}
-                            title = {searchTitle}
-                            url = {searchURL}
-                            addListState = {this.addListState}
-                        />
+                <div className="searchscreen">
+                    <div className="playerbox">
+                        <div className="videobox">
+                            {/* YouTube Player */}
+                            <Player
+                                list={history}
+                                title={searchTitle}
+                                url={searchURL}
+                                addListState={this.addListState}
+                            />
+                            <h3>{searchTitle}</h3>
+                        </div>
+                        <div className="vidnavbar">
+                            {/* Previous and Next Buttons */}
+                            <PrevNext
+                                prevNextState={this.prevNextState}
+                                index={searchIndex}
+                            />
+                            {/* Add to Favourites Button */}
+                            <FavButton
+                                list={favourites}
+                                title={searchTitle}
+                                url={searchURL}
+                                addListState={this.addListState}
+                            />
+                            <div>
+                                <select className="ttsconfig"></select>
+                                <button className="tts">Activate Text-to-Speech</button>
+                                {/* This is for G1's Text-to-Speech */}
+                            </div>
+                        </div>
                     </div>
-                    <div>
-                        <select className = "ttsconfig"></select>
-                        <button className = "tts">Activate Text-to-Speech</button>
+                    <div className="lyricbox">
+                        <p>This is for Aunt Pyone's lyrics</p>
+                    </div>
+                    <div className="relatedvids">
+                        <p>This is for related videos</p>
                     </div>
                 </div>
-                <div className = "lyricbox"></div>
-                {/* This is for Aunt Pyone's lyrics */}
-                <div className = "relatedvids"></div>
             </div>
         )
     }

@@ -1,12 +1,13 @@
 import React from "react";
 import "./SearchLayout.css";
-
+import { Routes, Route, Link } from "react-router-dom";
 import PrevNext from "./PrevNext.js";
 import updateList from "./list/UpdateList.js";
 import FavButton from "./list/FavButton.js";
 import Player from "./Player.js";
 import SelectList from "./list/SelectList.js";
 import HandleInput from "./HandleInput.js";
+import Main from "./routing/Main";
 
 class SearchScreen extends React.Component {
     constructor() {
@@ -94,62 +95,64 @@ class SearchScreen extends React.Component {
         const { history } = this.state;
 
         return (
-            <div className="webpage">
-                <h1 id="header">The Karaoke Website</h1>
-                <div className="topnavbar">
-                    {/* Search Bar Input */}
-                    <HandleInput
-                        input={input}
-                        handleInputState={this.handleInputState}
-                        searchState={this.searchState}
-                    />
-                    {/* Favourites and History Dropdown Lists */}
-                    <SelectList
-                        selectListState={this.selectListState}
-                        favourites={favourites}
-                        history={history}
-                    />
-                </div>
-                <div className="searchscreen">
-                    <div className="playerbox">
-                        <div className="videobox">
-                            {/* YouTube Player */}
-                            <Player
-                                list={history}
-                                title={searchTitle}
-                                url={searchURL}
-                                addListState={this.addListState}
-                            />
-                            <h3>{searchTitle}</h3>
-                        </div>
-                        <div className="vidnavbar">
-                            {/* Previous and Next Buttons */}
-                            <PrevNext
-                                prevNextState={this.prevNextState}
-                                index={searchIndex}
-                            />
-                            {/* Add to Favourites Button */}
-                            <FavButton
-                                list={favourites}
-                                title={searchTitle}
-                                url={searchURL}
-                                addListState={this.addListState}
-                            />
-                            <div>
-                                <select className="ttsconfig"></select>
-                                <button className="tts">Activate Text-to-Speech</button>
-                                {/* This is for G1's Text-to-Speech */}
+            <>
+                <div className="webpage">
+                    <h1 id="header">The Karaoke Website</h1>
+                    <div className="topnavbar">
+                        {/* Search Bar Input */}
+                        <HandleInput
+                            input={input}
+                            handleInputState={this.handleInputState}
+                            searchState={this.searchState}
+                        />
+                        {/* Favourites and History Dropdown Lists */}
+                        <SelectList
+                            selectListState={this.selectListState}
+                            favourites={favourites}
+                            history={history}
+                        />
+                    </div>
+                    <div className="searchscreen">
+                        <div className="playerbox">
+                            <div className="videobox">
+                                {/* YouTube Player */}
+                                <Player
+                                    list={history}
+                                    title={searchTitle}
+                                    url={searchURL}
+                                    addListState={this.addListState}
+                                />
+                                <h3>{searchTitle}</h3>
+                            </div>
+                            <div className="vidnavbar">
+                                {/* Previous and Next Buttons */}
+                                <PrevNext
+                                    prevNextState={this.prevNextState}
+                                    index={searchIndex}
+                                />
+                                {/* Add to Favourites Button */}
+                                <FavButton
+                                    list={favourites}
+                                    title={searchTitle}
+                                    url={searchURL}
+                                    addListState={this.addListState}
+                                />
+                                <div>
+                                    <select className="ttsconfig"></select>
+                                    <button className="tts">Activate Text-to-Speech</button>
+                                    {/* This is for G1's Text-to-Speech */}
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div className="lyricbox">
-                        <p>This is for Aunt Pyone's lyrics</p>
-                    </div>
-                    <div className="relatedvids">
-                        <p>This is for related videos</p>
+                        <div className="lyricbox">
+                            <p>This is for Aunt Pyone's lyrics</p>
+                        </div>
+                        <div className="relatedvids">
+                            <p>This is for related videos</p>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </>
         )
     }
 }

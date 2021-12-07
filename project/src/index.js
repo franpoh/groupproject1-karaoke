@@ -3,10 +3,11 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import SearchScreen from './components/SearchScreen';
 import reportWebVitals from './reportWebVitals';
+import Main from './components/routing/Main';
 
 ReactDOM.render(
   <React.StrictMode>
-    <SearchScreen />
+    <Main/>
   </React.StrictMode>,
   document.getElementById('root')
 );

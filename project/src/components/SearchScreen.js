@@ -1,11 +1,13 @@
 import React from "react";
-
 import PrevNext from "./PrevNext.js";
 import updateList from "./list/UpdateList.js";
 import FavButton from "./list/FavButton.js";
 import Player from "./Player.js";
 import SelectList from "./list/SelectList.js";
 import HandleInput from "./HandleInput.js";
+import Main from "./routing/Main.js";
+
+
 
 class SearchScreen extends React.Component {
     constructor() {
@@ -93,54 +95,56 @@ class SearchScreen extends React.Component {
         const { history } = this.state;
 
         return (
-            <div>
-                <h1>The Karaoke Website</h1>
-                <div className = "navbar">
-                    {/* Search Bar Input */}
-                    <HandleInput 
-                        input = {input}    
-                        handleInputState = {this.handleInputState}
-                        searchState = {this.searchState}
-                    />
-                    {/* Favourites and History Dropdown Lists */}
-                    <SelectList 
-                        selectListState = {this.selectListState}
-                        favourites = {favourites}
-                        history = {history}
-                    />
-                </div>
-                <div className = "videobox">
-                    {/* YouTube Player */}
-                    <Player 
-                        list = {history}
-                        title = {searchTitle}
-                        url = {searchURL}
-                        addListState = {this.addListState}
-                    />
-                    <h3>{searchTitle}</h3>
-                    <div>
-                        {/* Previous and Next Buttons */}
-                        <PrevNext
-                            prevNextState = {this.prevNextState}
-                            index = {searchIndex}
+            <>
+                <div>
+                    <Main/>
+                    <div className = "navbar">
+                        {/* Search Bar Input */}
+                        <HandleInput 
+                            input = {input}    
+                            handleInputState = {this.handleInputState}
+                            searchState = {this.searchState}
                         />
-                        {/* Add to Favourites Button */}
-                        <FavButton
-                            list = {favourites}
+                        {/* Favourites and History Dropdown Lists */}
+                        <SelectList 
+                            selectListState = {this.selectListState}
+                            favourites = {favourites}
+                            history = {history}
+                        />
+                    </div>
+                    <div className = "videobox">
+                        {/* YouTube Player */}
+                        <Player 
+                            list = {history}
                             title = {searchTitle}
                             url = {searchURL}
                             addListState = {this.addListState}
                         />
+                        <h3>{searchTitle}</h3>
+                        <div>
+                            {/* Previous and Next Buttons */}
+                            <PrevNext
+                                prevNextState = {this.prevNextState}
+                                index = {searchIndex}
+                            />
+                            {/* Add to Favourites Button */}
+                            <FavButton
+                                list = {favourites}
+                                title = {searchTitle}
+                                url = {searchURL}
+                                addListState = {this.addListState}
+                            />
+                        </div>
+                        <div>
+                            <select className = "ttsconfig"></select>
+                            <button className = "tts">Activate Text-to-Speech</button>
+                        </div>
                     </div>
-                    <div>
-                        <select className = "ttsconfig"></select>
-                        <button className = "tts">Activate Text-to-Speech</button>
-                    </div>
+                    <div className = "lyricbox"></div>
+                    {/* This is for Aunt Pyone's lyrics */}
+                    <div className = "relatedvids"></div>
                 </div>
-                <div className = "lyricbox"></div>
-                {/* This is for Aunt Pyone's lyrics */}
-                <div className = "relatedvids"></div>
-            </div>
+            </>
         )
     }
 }

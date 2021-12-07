@@ -1,0 +1,45 @@
+.webpage {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    row-gap: 5vh;
+}
+
+#header {
+    text-align: center;
+    margin-bottom: 0%;
+}
+
+.searchscreen {
+    display: flex;
+    column-gap: 5vw;
+}
+
+.playerbox {
+    display: flex;
+    flex-flow: column wrap;
+    margin: auto;
+    row-gap: 5vh;
+}
+
+.topnavbar {
+    display: flex;
+}
+
+.vidnavbar {
+    display: flex;
+}
+
+.lyricbox {
+    width: 500px;
+    height: 500px;
+    background-color: rgb(238, 238, 175);
+    margin: auto;
+}
+
+.relatedvids {
+    width: 300px;
+    height: 500px;
+    background-color: rgb(165, 165, 221);
+    margin: auto;
+}

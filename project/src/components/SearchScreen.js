@@ -138,6 +138,7 @@ class SearchScreen extends React.Component {
                     </div>
                 </div>
                 <div className = "lyricbox"></div>
+                {/* This is for Aunt Pyone's lyrics */}
                 <div className = "relatedvids"></div>
             </div>
         )

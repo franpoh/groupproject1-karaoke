@@ -9,7 +9,7 @@ import SelectList from "./list/SelectList.js";
 import HandleInput from "./HandleInput.js";
 import Main from "./routing/Main.js";
 
-import Search from './Search-aaa';
+
 import MainScreen from './MainScreen';
 
 class SearchScreen extends React.Component {
@@ -147,8 +147,7 @@ class SearchScreen extends React.Component {
                         </div>
                     </div>
                     <div className="lyricbox">
-                        <p>This is for Aunt Pyone's lyrics</p>
-                        <Search />
+                        <p>This is for Aunt Pyone's lyrics</p>                        
                         <MainScreen />
                     </div>
                     <div className="relatedvids">

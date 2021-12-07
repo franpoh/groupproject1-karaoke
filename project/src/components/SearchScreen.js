@@ -9,7 +9,6 @@ import SelectList from "./list/SelectList.js";
 import HandleInput from "./HandleInput.js";
 import Main from "./routing/Main.js";
 
-import Search from './Search-aaa';
 import MainScreen from './MainScreen';
 
 class SearchScreen extends React.Component {
@@ -21,7 +20,8 @@ class SearchScreen extends React.Component {
         this.handleInputState = this.handleInputState.bind(this);
         this.searchState = this.searchState.bind(this);
         this.state = {
-            input: "", // input from searchbar
+            inputSong: "", // input from song searchbar
+            inputArtist: "", // input from artist searchbar
             searchResults: [], // an array of 20 results from searching. Includes title and videoId
             searchIndex: 0, // index number for searchResult array
             searchTitle: "", // title of selected song
@@ -74,8 +74,10 @@ class SearchScreen extends React.Component {
     }
 
     // updating input after typing in searchbar
-    handleInputState(input) { // passing in event.target.value
-        this.setState({ input });
+    handleInputState(output) { // passing in event.target.value
+        const setInput = () => output.target === "inputsong" ? this.setState({ inputSong: output.result }) : this.setState({ inputArtist: output.result });
+        setInput();
+        console.log("TEST! ", this.state.inputArtist);
     }
 
     // setting states after returning search results
@@ -90,7 +92,8 @@ class SearchScreen extends React.Component {
     }
 
     render() {
-        const { input } = this.state;
+        const { inputSong } = this.state;
+        const { inputArtist } = this.state;
         const { searchTitle } = this.state;
         const { searchURL } = this.state;
         const { searchIndex } = this.state;
@@ -103,7 +106,8 @@ class SearchScreen extends React.Component {
                 <div className="topnavbar">
                     {/* Search Bar Input */}
                     <HandleInput
-                        input={input}
+                        inputSong={inputSong}
+                        inputArtist={inputArtist}
                         handleInputState={this.handleInputState}
                         searchState={this.searchState}
                     />
@@ -148,7 +152,6 @@ class SearchScreen extends React.Component {
                     </div>
                     <div className="lyricbox">
                         <p>This is for Aunt Pyone's lyrics</p>
-                        <Search />
                         <MainScreen />
                     </div>
                     <div className="relatedvids">

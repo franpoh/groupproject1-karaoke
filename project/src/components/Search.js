@@ -5,7 +5,7 @@ async function search(props, event) {
 
     let searchResults = await API.get("/search", {
         params: {
-            q: props.input + " " + props.inputArtist, // pass in this.state.input/inputArtist from searchbar
+            q: props.inputSong + " " + props.inputArtist, // pass in this.state.inputSong/inputArtist from searchbar
         }
     }).then((response) => { 
         const { data } = response;
@@ -15,6 +15,7 @@ async function search(props, event) {
                 url: item.id.videoId, // song id
             }
         })
+        console.log("TEST! ", props.inputSong, " ", props.inputArtist);
         return result; // searchResults = {title, url}
     })
 

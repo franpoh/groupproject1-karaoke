@@ -1,9 +1,6 @@
 import React from "react";
-<<<<<<< HEAD
 import "./SearchLayout.css";
 
-=======
->>>>>>> c418b87370f69382133d1f78f0c29bff2ab3cd29
 import PrevNext from "./PrevNext.js";
 import updateList from "./list/UpdateList.js";
 import FavButton from "./list/FavButton.js";
@@ -11,8 +8,6 @@ import Player from "./Player.js";
 import SelectList from "./list/SelectList.js";
 import HandleInput from "./HandleInput.js";
 import Main from "./routing/Main.js";
-
-
 
 import Search from './Search-aaa';
 import MainScreen from './MainScreen';
@@ -26,8 +21,7 @@ class SearchScreen extends React.Component {
         this.handleInputState = this.handleInputState.bind(this);
         this.searchState = this.searchState.bind(this);
         this.state = {
-            input: "", // input from song searchbar
-            inputArtist: "", // input from artist searchbar
+            input: "", // input from searchbar
             searchResults: [], // an array of 20 results from searching. Includes title and videoId
             searchIndex: 0, // index number for searchResult array
             searchTitle: "", // title of selected song
@@ -81,11 +75,7 @@ class SearchScreen extends React.Component {
 
     // updating input after typing in searchbar
     handleInputState(input) { // passing in event.target.value
-        if (input.target === "input") {
-            this.setState({ input });
-        } else {
-            this.setState({ inputArtist })
-        }
+        this.setState({ input });
     }
 
     // setting states after returning search results
@@ -101,7 +91,6 @@ class SearchScreen extends React.Component {
 
     render() {
         const { input } = this.state;
-        const { inputArtist } = this.state;
         const { searchTitle } = this.state;
         const { searchURL } = this.state;
         const { searchIndex } = this.state;
@@ -109,14 +98,12 @@ class SearchScreen extends React.Component {
         const { history } = this.state;
 
         return (
-<<<<<<< HEAD
             <div className="webpage">
                 <h1 id="header">The Karaoke Website</h1>
                 <div className="topnavbar">
                     {/* Search Bar Input */}
                     <HandleInput
                         input={input}
-                        inputArtist={inputArtist}
                         handleInputState={this.handleInputState}
                         searchState={this.searchState}
                     />
@@ -169,58 +156,6 @@ class SearchScreen extends React.Component {
                     </div>
                 </div>
             </div>
-=======
-            <>
-                <div>
-                    <Main/>
-                    <div className = "navbar">
-                        {/* Search Bar Input */}
-                        <HandleInput 
-                            input = {input}    
-                            handleInputState = {this.handleInputState}
-                            searchState = {this.searchState}
-                        />
-                        {/* Favourites and History Dropdown Lists */}
-                        <SelectList 
-                            selectListState = {this.selectListState}
-                            favourites = {favourites}
-                            history = {history}
-                        />
-                    </div>
-                    <div className = "videobox">
-                        {/* YouTube Player */}
-                        <Player 
-                            list = {history}
-                            title = {searchTitle}
-                            url = {searchURL}
-                            addListState = {this.addListState}
-                        />
-                        <h3>{searchTitle}</h3>
-                        <div>
-                            {/* Previous and Next Buttons */}
-                            <PrevNext
-                                prevNextState = {this.prevNextState}
-                                index = {searchIndex}
-                            />
-                            {/* Add to Favourites Button */}
-                            <FavButton
-                                list = {favourites}
-                                title = {searchTitle}
-                                url = {searchURL}
-                                addListState = {this.addListState}
-                            />
-                        </div>
-                        <div>
-                            <select className = "ttsconfig"></select>
-                            <button className = "tts">Activate Text-to-Speech</button>
-                        </div>
-                    </div>
-                    <div className = "lyricbox"></div>
-                    {/* This is for Aunt Pyone's lyrics */}
-                    <div className = "relatedvids"></div>
-                </div>
-            </>
->>>>>>> c418b87370f69382133d1f78f0c29bff2ab3cd29
         )
     }
 }

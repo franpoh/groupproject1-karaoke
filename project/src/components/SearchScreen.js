@@ -20,7 +20,8 @@ class SearchScreen extends React.Component {
         this.handleInputState = this.handleInputState.bind(this);
         this.searchState = this.searchState.bind(this);
         this.state = {
-            input: "", // input from searchbar
+            input: "", // input from song searchbar
+            inputArtist: "", // input from artist searchbar
             searchResults: [], // an array of 20 results from searching. Includes title and videoId
             searchIndex: 0, // index number for searchResult array
             searchTitle: "", // title of selected song
@@ -74,7 +75,11 @@ class SearchScreen extends React.Component {
 
     // updating input after typing in searchbar
     handleInputState(input) { // passing in event.target.value
-        this.setState({ input });
+        if (input.target === "input") {
+            this.setState({ input });
+        } else {
+            this.setState({ inputArtist })
+        }
     }
 
     // setting states after returning search results
@@ -90,6 +95,7 @@ class SearchScreen extends React.Component {
 
     render() {
         const { input } = this.state;
+        const { inputArtist } = this.state;
         const { searchTitle } = this.state;
         const { searchURL } = this.state;
         const { searchIndex } = this.state;
@@ -103,6 +109,7 @@ class SearchScreen extends React.Component {
                     {/* Search Bar Input */}
                     <HandleInput
                         input={input}
+                        inputArtist={inputArtist}
                         handleInputState={this.handleInputState}
                         searchState={this.searchState}
                     />

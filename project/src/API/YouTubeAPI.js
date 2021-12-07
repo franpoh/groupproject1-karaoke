@@ -1,16 +1,17 @@
 import axios from "axios";
 
-const key = "AIzaSyBWydU1tn9HRWSyU0WS3iIWuJV2NxZ6pJI"; // generated credentials from Google API and Services
+const key = "AIzaSyC4fg8lFBo9e276Qf6Xbw16sP2TarXkb6E"; // generated credentials from Google API and Services
 
-const API = axios.create({
+const ytAPI = axios.create({
     baseURL: "https://www.googleapis.com/youtube/v3",
     params: {
         part: "snippet", // The part parameter specifies a comma-separated list of one or more search resource properties that the API response will include. Set the parameter value to snippet as dictated by documentation
-        maxResults: 20, // maximum of 20 results
+        maxResults: 10, // maximum of 20 results
         key: key,
-        type: "video" // ensure only videos are returned, instead of channels/playlists
+        type: "video", // ensure only videos are returned, instead of channels/playlists
+        videoCategoryID: "10", // category for music
     },
     headers: {}
 });
 
-export default API;
+export default ytAPI;

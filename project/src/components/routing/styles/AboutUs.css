@@ -1,0 +1,16 @@
+.about-container{
+    display:flex;
+    flex-flow: column wrap;
+    align-items: center;
+    background-color:rgba(30, 120, 200, 0.75);
+    justify-content: center;
+}
+
+.about-header {
+    margin:0;
+}
+
+.content p {
+    display: block;
+    width: 60vw;
+}

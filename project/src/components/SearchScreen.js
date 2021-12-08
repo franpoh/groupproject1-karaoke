@@ -6,9 +6,15 @@ import updateList from "./list/UpdateList.js";
 import FavButton from "./list/FavButton.js";
 import Player from "./Player.js";
 import SelectList from "./list/SelectList.js";
+<<<<<<< Updated upstream
 import HandleInput from "./searching/HandleInput"
 import RelatedVideos from "./searching/RelatedVideo";
 import Main from "./routing/Main.js";
+=======
+import HandleInput from "./searching/HandleInput.js";
+
+import Search from './Search-aaa';
+>>>>>>> Stashed changes
 import MainScreen from './MainScreen';
 
 class SearchScreen extends React.Component {
@@ -134,7 +140,6 @@ class SearchScreen extends React.Component {
 
         return (
             <div className="webpage">
-                <h1 id="header">The Karaoke Website</h1>
                 <div className="topnavbar">
                     {/* Search Bar Input */}
                     <HandleInput

@@ -6,10 +6,9 @@ import updateList from "./list/UpdateList.js";
 import FavButton from "./list/FavButton.js";
 import Player from "./Player.js";
 import SelectList from "./list/SelectList.js";
-import HandleInput from "./HandleInput.js";
+import HandleInput from "./searching/HandleInput"
+import RelatedVideos from "./searching/RelatedVideo";
 import Main from "./routing/Main.js";
-
-
 import MainScreen from './MainScreen';
 
 class SearchScreen extends React.Component {
@@ -20,14 +19,19 @@ class SearchScreen extends React.Component {
         this.selectListState = this.selectListState.bind(this);
         this.handleInputState = this.handleInputState.bind(this);
         this.searchState = this.searchState.bind(this);
+        this.searchRVidsState = this.searchRVidsState.bind(this);
+        this.selectRVidsState = this.selectRVidsState.bind(this);
+
         this.state = {
-            input: "", // input from searchbar
+            inputSong: "", // input from song searchbar
+            inputArtist: "", // input from artist searchbar
             searchResults: [], // an array of 20 results from searching. Includes title and videoId
             searchIndex: 0, // index number for searchResult array
             searchTitle: "", // title of selected song
             searchURL: "", // videoId of selected song
             favourites: [], // array of favourited items that is synced up to Windows.localStorage("favourites")
             history: [], // array of history items that is synced up to Windows.localStorage("history")
+            relatedVids: [], // array of videos related to search result
         }
     }
 
@@ -74,28 +78,49 @@ class SearchScreen extends React.Component {
     }
 
     // updating input after typing in searchbar
-    handleInputState(input) { // passing in event.target.value
-        this.setState({ input });
+    handleInputState(output) { // passing in event.target.value
+        const setInput = () => output.target === "inputsong" ? this.setState({ inputSong: output.result }) : this.setState({ inputArtist: output.result }); // set this.state.inputSong/inputArtist based on event target id
+        setInput();
     }
 
-    // setting states after returning search results
+    // execute after returning search results
     searchState(searchResults) { // passing in searchResults object {title, url}
         this.setState({
             ...this.state,
-            input: "",
+            inputSong: "",
+            inputArtist: "",
             searchResults,
             searchTitle: searchResults[this.state.searchIndex].title, // setting this.state.searchTitle and searchURL based on searchResults[searchIndex = 0]
             searchURL: searchResults[this.state.searchIndex].url,
         })
     }
 
+    // execute after finding related videos to search result
+    searchRVidsState(relatedVids) { // passing in searchResults object {title, url, thumbnailurl}
+        this.setState({
+            ...this.state,
+            relatedVids,
+        })
+    }
+
+    // execute after selecting related video to play
+    selectRVidsState(video) {
+        this.setState({
+            ...this.state,
+            searchTitle: video.title,
+            searchURL: video.url,
+        })
+    }
+
     render() {
-        const { input } = this.state;
+        const { inputSong } = this.state;
+        const { inputArtist } = this.state;
         const { searchTitle } = this.state;
         const { searchURL } = this.state;
         const { searchIndex } = this.state;
         const { favourites } = this.state;
         const { history } = this.state;
+        const { relatedVids } = this.state;
 
         return (
             <div className="webpage">
@@ -103,9 +128,11 @@ class SearchScreen extends React.Component {
                 <div className="topnavbar">
                     {/* Search Bar Input */}
                     <HandleInput
-                        input={input}
+                        inputSong={inputSong}
+                        inputArtist={inputArtist}
                         handleInputState={this.handleInputState}
                         searchState={this.searchState}
+                        searchRVidsState={this.searchRVidsState}
                     />
                     {/* Favourites and History Dropdown Lists */}
                     <SelectList
@@ -150,9 +177,10 @@ class SearchScreen extends React.Component {
                         <p>This is for Aunt Pyone's lyrics</p>                        
                         <MainScreen />
                     </div>
-                    <div className="relatedvids">
-                        <p>This is for related videos</p>
-                    </div>
+                    <RelatedVideos
+                        rvideos={relatedVids}
+                        selectRVidsState={this.selectRVidsState}
+                    />
                 </div>
             </div>
         )

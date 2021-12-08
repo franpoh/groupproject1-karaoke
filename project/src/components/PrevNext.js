@@ -1,6 +1,7 @@
 // Handle function and return next/previous buttons
 
 import React from "react";
+import "./SearchLayout.css";
 
 function PrevNext(props) {
     function onSwitch(event) {

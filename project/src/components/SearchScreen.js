@@ -166,11 +166,7 @@ class SearchScreen extends React.Component {
                                 url={searchURL}
                                 addListState={this.addListState}
                             />
-                            <div>
-                                <select className="ttsconfig"></select>
-                                <button className="tts">Activate Text-to-Speech</button>
-                                {/* This is for G1's Text-to-Speech */}
-                            </div>
+                            <button className="lyricbutton">Display Lyrics</button>
                         </div>
                     </div>
                     <div className="lyricbox">

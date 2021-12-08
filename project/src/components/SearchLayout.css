@@ -38,8 +38,23 @@
 }
 
 .relatedvids {
+    display: flex;
+    flex-flow: column;
     width: 300px;
     height: 500px;
-    background-color: rgb(165, 165, 221);
     margin: auto;
+    align-items: center;
+}
+
+.rvidthumbnail {
+    width: 250px;
+    height: 180px;
+}
+
+.rvidtitle {
+    font-size: 15px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 250px;
 }

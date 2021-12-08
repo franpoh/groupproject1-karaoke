@@ -35,7 +35,25 @@ class OvhLyric extends React.Component {
         });
     }
 
+<<<<<<< HEAD
     handleSong(e) {
+=======
+    async fetchOvhData() {
+
+        // const response = await API.get('/miss a/bad girl good girl');
+
+        const response = await API.get('/the weeknd/blinding lights');
+
+
+        let lyrics = [];
+        if (response.status === 200) {
+            lyrics = response.data.lyrics;
+        }
+        console.log("Full API data: ", response);
+        const replacedSlashR = lyrics.replace(/\r/g, ' ');
+        console.log("lyrics  format: ", replacedSlashR);
+
+>>>>>>> upstream/main
         this.setState({
             ...this.state,
             inputSong: e.target.value,

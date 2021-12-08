@@ -10,7 +10,7 @@ function TextToSpeech(props) {
 
     const [playCount, setplayCount] = useState(0);
     // const [textSubmitting, settextSubmitting] = useState("");
-    const [rcvAudio, setrcvAudio] = useState("");
+    const [rcvAudio, setrcvAudio] = useState(""); // song audio part 1
     const [reserveAudio2, setreserveAudio2] = useState(""); // song audio part 2 if needed
     const [reserveAudio3, setreserveAudio3] = useState(""); // song audio part 3 if needed
     const [reserveAudio4, setreserveAudio4] = useState(""); // song audio part 4 if needed
@@ -104,6 +104,7 @@ function TextToSpeech(props) {
         let apiformat = "8khz_8bit_mono"; // default is 8khz_8bit_mono
         let apiB64Status = true; // default is false, true for output as Base64 string format
 
+        // submitting text to API in 4 parts if necessary
         try {
             const response = await API.get(`/?key=${apikey}&hl=${apilang}&c=${apicodec}&f=${apiformat}&v=${genderSubmit}&src=${part1}&b64=${apiB64Status}`);
 
@@ -137,21 +138,19 @@ function TextToSpeech(props) {
     const playAudio = () => {
 
         if (rcvAudio==="") {
-            return (
-                <p>no audio currently</p>
-            )
+            return;            
+            //     <p>no audio currently</p>            
         }
 
         if (rcvAudio.substring(0,5) === "ERROR") {
-            return (
-                <p>{rcvAudio} Please contact admin</p>
-            )
+            return;
+            // <p>{rcvAudio} Please contact admin</p>            
         } // api has its own defined error set
 
         return (
             <div>
-            <p>have audio {playCount}</p>
-            <audio id="audioPlayer" src={rcvAudio} autoPlay="autoplay" onEnded={checkPlay}>audio not supported</audio>
+            {/* <p>have audio {playCount}</p> */}
+            <audio id="audioPlayer" src={rcvAudio} autoPlay="autoplay" onEnded={checkPlay} controls style={{height: '22px'}}>audio not supported</audio>            
             </div>
         )
 
@@ -165,7 +164,7 @@ function TextToSpeech(props) {
         if (playCount === 4) {
             setplayCount(0);
             console.log('playcount: ', playCount);
-            return;
+            return; // reset play count to 0 once part 4 end
         }
         if (playCount === 3) {
             setplayCount(4);
@@ -189,12 +188,10 @@ function TextToSpeech(props) {
 
     return (
         <div>
-            <div className='displayWindow2'>                
-                <form onSubmit={handleSubmit}>                    
-
+            <div>
+                <form onSubmit={handleSubmit}>
                     {selectGender()}
-
-                    <input type='submit' value='Submit' />
+                    <input type='submit' value='Voice Reader' />
                 </form>
                 {playAudio(rcvAudio)}
             </div>

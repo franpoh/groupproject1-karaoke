@@ -14,30 +14,25 @@ function TextToSpeech(props) {
     const [reserveAudio2, setreserveAudio2] = useState(""); // song audio part 2 if needed
     const [reserveAudio3, setreserveAudio3] = useState(""); // song audio part 3 if needed
     const [reserveAudio4, setreserveAudio4] = useState(""); // song audio part 4 if needed
-    // const [langSubmit, setlangSubmit] = useState('en-us');
+    const [genderSubmit, setgenderSubmit] = useState('en-us');
 
-    // const selectLang = () => {
+    const selectGender = () => {        
 
-    //     const optionLang = langList.map((x,i) => {
-    //         return (
-    //             <option key={`${x}-${i}`} value={x.langv}>{x.langtxt}</option>
-    //         )
-    //     })
-
-    //     return (
-    //         <select id='lang' name = 'lang' defaultValue='en-us' onChange={handleLangChange}>
-    //             {optionLang}
-    //         </select>
-    //     )
-    // }
+        return (
+            <select id='lang' name = 'gender' defaultValue='Linda' onChange={handleGenderChange}>
+                <option key='gender1' value='Linda'>Female</option>
+                <option key='gender2' value='John'>Male</option>                
+            </select>
+        )
+    }
 
     // function handleInputChange (e) {
     //     settextSubmitting(e.target.value);
     // }
 
-    // function handleLangChange (e) {
-    //     setlangSubmit(e.target.value);
-    // }
+    function handleGenderChange (e) {
+        setgenderSubmit(e.target.value);
+    }
 
     async function handleSubmit (e) {
         e.preventDefault();
@@ -105,22 +100,23 @@ function TextToSpeech(props) {
         // let apilang = "zh-cn";
         let apilang = "en-us";
         let apicodec = "MP3";
+        // let apivoice = "Amy"; testing
         let apiformat = "8khz_8bit_mono"; // default is 8khz_8bit_mono
         let apiB64Status = true; // default is false, true for output as Base64 string format
 
         try {
-            const response = await API.get(`/?key=${apikey}&hl=${apilang}&c=${apicodec}&f=${apiformat}&src=${part1}&b64=${apiB64Status}`);
+            const response = await API.get(`/?key=${apikey}&hl=${apilang}&c=${apicodec}&f=${apiformat}&v=${genderSubmit}&src=${part1}&b64=${apiB64Status}`);
 
             if (part2 !== "") {            
-                response2 = await API.get(`/?key=${apikey}&hl=${apilang}&c=${apicodec}&f=${apiformat}&src=${part2}&b64=${apiB64Status}`);
+                response2 = await API.get(`/?key=${apikey}&hl=${apilang}&c=${apicodec}&f=${apiformat}&v=${genderSubmit}&src=${part2}&b64=${apiB64Status}`);
                 setreserveAudio2(response2.data);
     
                 if (part3 !== "") {
-                    response3 = await API.get(`/?key=${apikey}&hl=${apilang}&c=${apicodec}&f=${apiformat}&src=${part3}&b64=${apiB64Status}`);
+                    response3 = await API.get(`/?key=${apikey}&hl=${apilang}&c=${apicodec}&f=${apiformat}&v=${genderSubmit}&src=${part3}&b64=${apiB64Status}`);
                     setreserveAudio3(response3.data);
     
                     if (part4 !== "") {
-                        response4 = await API.get(`/?key=${apikey}&hl=${apilang}&c=${apicodec}&f=${apiformat}&src=${part4}&b64=${apiB64Status}`);
+                        response4 = await API.get(`/?key=${apikey}&hl=${apilang}&c=${apicodec}&f=${apiformat}&v=${genderSubmit}&src=${part4}&b64=${apiB64Status}`);
                         setreserveAudio4(response4.data);
                     }
                 }
@@ -196,7 +192,7 @@ function TextToSpeech(props) {
             <div className='displayWindow2'>                
                 <form onSubmit={handleSubmit}>                    
 
-                    {/* {selectLang(langList)} */}
+                    {selectGender()}
 
                     <input type='submit' value='Submit' />
                 </form>

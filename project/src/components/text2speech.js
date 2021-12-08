@@ -3,13 +3,17 @@ import API from '../API-g1';
 // import langList from './lang';
 
 function TextToSpeech(props) {
+        
+    let waitLyrics = 'none';
+    if (props.sendOutput.length!==0) {
+        waitLyrics = 'inline';        
+    };
     
     let response2;
     let response3;
     let response4;
 
-    const [playCount, setplayCount] = useState(0);
-    // const [textSubmitting, settextSubmitting] = useState("");
+    const [playCount, setplayCount] = useState(0);    
     const [rcvAudio, setrcvAudio] = useState(""); // song audio part 1
     const [reserveAudio2, setreserveAudio2] = useState(""); // song audio part 2 if needed
     const [reserveAudio3, setreserveAudio3] = useState(""); // song audio part 3 if needed
@@ -19,16 +23,12 @@ function TextToSpeech(props) {
     const selectGender = () => {        
 
         return (
-            <select id='lang' name = 'gender' defaultValue='Linda' onChange={handleGenderChange}>
+            <select id='lang' name = 'gender' defaultValue='Linda' onChange={handleGenderChange} style={{display:waitLyrics}}>
                 <option key='gender1' value='Linda'>Female</option>
                 <option key='gender2' value='John'>Male</option>                
             </select>
         )
     }
-
-    // function handleInputChange (e) {
-    //     settextSubmitting(e.target.value);
-    // }
 
     function handleGenderChange (e) {
         setgenderSubmit(e.target.value);
@@ -40,11 +40,6 @@ function TextToSpeech(props) {
         console.log('Submitting text: ', props.sendOutput);
         // console.log('Submitting lang:', langSubmit);
         console.log('Submitting text.length: ', props.sendOutput.length);
-
-        if (props.sendOutput === '') {
-            alert('string empty!'); // replace before PRODUCTION
-            return;
-        } // dont waste GET attempt with empty string, daily 350 limit
 
         let testABC = props.sendOutput.replace(/\r/g,'. '); // text to speech api uses '. ' for pause, need the space after punctuation
         testABC = props.sendOutput.replace(/\n/g,'. '); // 1st argu is regex /string/g where g is global, whole string, /i will be case-insensitive /m multiline
@@ -191,7 +186,7 @@ function TextToSpeech(props) {
             <div>
                 <form onSubmit={handleSubmit}>
                     {selectGender()}
-                    <input type='submit' value='Voice Reader' />
+                    <input type='submit' value='Voice Reader' style={{display:waitLyrics}}/>
                 </form>
                 {playAudio(rcvAudio)}
             </div>

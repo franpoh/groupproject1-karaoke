@@ -16,14 +16,15 @@ async function search(props, event) {
             return {
                 title: item.snippet.title, // song title
                 url: item.id.videoId, // song id
+                artist: props.inputArtist, // song artist
             }
         })
-        return result; // searchResults = {title, url}
+        return result; // searchResults = {title, url, artist}
     })
 
     props.searchState(searchResults) // pass searchResults to SearchScreen.js/searchState() to set this.state.searchResults, searchTitle and searchURL
     SearchRVids(props, searchResults[0].url);
-    document.getElementById("searchbutton").disabled = true; // disable search button
+    document.getElementById("inputartist").value = "default";
 }
 
 export default search;

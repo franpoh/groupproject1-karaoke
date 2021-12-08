@@ -25,6 +25,8 @@ async function SearchRVids(props, searchResult) {
     })
 
     props.searchRVidsState(rVideos) // pass searchResults to SearchScreen.js/searchState() to set this.state.relatedVideos
+    document.getElementById("inputartist").value = "default";
+    document.getElementById("searchbutton").disabled = true; // disable search button
 }
 
 export default SearchRVids;

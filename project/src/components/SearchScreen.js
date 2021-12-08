@@ -6,8 +6,15 @@ import updateList from "./list/UpdateList.js";
 import FavButton from "./list/FavButton.js";
 import Player from "./Player.js";
 import SelectList from "./list/SelectList.js";
+<<<<<<< Updated upstream
 import HandleInput from "./HandleInput.js";
 import Main from "./routing/Main";
+=======
+import HandleInput from "./searching/HandleInput.js";
+import RelatedVideos from "./searching/RelatedVideo";
+import Search from './Search-aaa';
+import MainScreen from './MainScreen';
+>>>>>>> Stashed changes
 
 class SearchScreen extends React.Component {
     constructor() {

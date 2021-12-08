@@ -1,0 +1,11 @@
+.contact-container{
+    display:flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.contact-header{
+    margin:0;
+    margin-bottom: 20px;
+}

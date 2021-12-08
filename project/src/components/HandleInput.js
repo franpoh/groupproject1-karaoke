@@ -12,8 +12,20 @@ function HandleInput(props) {
     }
 
     return (
-        <form onSubmit={(event) => search(props, event)}> 
-            <input type="text" placeholder="Enter Song Title Here!" id="inputsong" value={props.inputSong} onChange={setInput}></input>
+        <form onSubmit={(event) => search(props, event)}>
+            <input type="text" list='suggestions' placeholder="Enter Song Title Here!" id="inputsong" value={props.inputSong} onChange={setInput}></input>
+            <datalist id='suggestions'>
+                <option value='Blinding Lights'>Most Popular!!</option>
+                <option>Missed you</option>
+                <option>Save Your Tears</option>
+                <option>Flashlights</option>
+                <option>Firework</option>
+                <option>Yellow</option>
+                <option>Peaches</option>
+                <option>Replay</option>
+                <option>Eternal Love</option>
+                <option>Spoiled by your love</option>
+            </datalist>
             <input type="text" placeholder="Enter Artist Name Here!" id="inputartist" value={props.inputArtist} onChange={setInput}></input>
             <button id="searchbutton" disabled>Search</button>
         </form> // run Search.js/search() upon submission

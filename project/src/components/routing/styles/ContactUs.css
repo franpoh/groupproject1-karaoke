@@ -8,4 +8,16 @@
 .contact-header{
     margin:0;
     margin-bottom: 20px;
+    display:block;
+    min-height: 100vh;
+    background-color:rgba(30, 120, 200, 0.75);
+}
+
+.contact-header {
+    margin:0;
+}
+
+.content p {
+    display: block;
+    width: 60vw;
 }

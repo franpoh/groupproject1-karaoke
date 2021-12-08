@@ -2,6 +2,7 @@
     display: block;
     border: 0;
     padding: 0;
+    background-color:rgba(30, 120, 200, 0.75);
 }
 
 .nav-container h2{
@@ -39,5 +40,5 @@ a:visited {
 .content{
     border: 0;
     padding:0;
+    min-height: 100vh;
 }
-

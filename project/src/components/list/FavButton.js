@@ -1,6 +1,7 @@
 // Return 'Add to Favourites' button
 
 import addList from "./AddList";
+import "../SearchLayout.css";
 
 function FavButton(props) {
     return (

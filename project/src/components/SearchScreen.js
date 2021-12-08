@@ -1,20 +1,21 @@
 import React from "react";
 import "./SearchLayout.css";
-import { Routes, Route, Link } from "react-router-dom";
+
 import PrevNext from "./PrevNext.js";
 import updateList from "./list/UpdateList.js";
 import FavButton from "./list/FavButton.js";
 import Player from "./Player.js";
 import SelectList from "./list/SelectList.js";
 <<<<<<< Updated upstream
-import HandleInput from "./HandleInput.js";
-import Main from "./routing/Main";
+import HandleInput from "./searching/HandleInput"
+import RelatedVideos from "./searching/RelatedVideo";
+import Main from "./routing/Main.js";
 =======
 import HandleInput from "./searching/HandleInput.js";
-import RelatedVideos from "./searching/RelatedVideo";
+
 import Search from './Search-aaa';
-import MainScreen from './MainScreen';
 >>>>>>> Stashed changes
+import MainScreen from './MainScreen';
 
 class SearchScreen extends React.Component {
     constructor() {
@@ -24,14 +25,22 @@ class SearchScreen extends React.Component {
         this.selectListState = this.selectListState.bind(this);
         this.handleInputState = this.handleInputState.bind(this);
         this.searchState = this.searchState.bind(this);
+        this.searchRVidsState = this.searchRVidsState.bind(this);
+        this.selectRVidsState = this.selectRVidsState.bind(this);
+        this.artistResultsState = this.artistResultsState.bind(this);
+
         this.state = {
-            input: "", // input from searchbar
-            searchResults: [], // an array of 20 results from searching. Includes title and videoId
+            inputSong: "", // input from song searchbar
+            inputArtist: "", // input from artist searchbar
+            searchResults: [], // an array of results from searching songs. Includes title and videoId
+            artistResults: [], // an array of suggested artists from searching songs
             searchIndex: 0, // index number for searchResult array
             searchTitle: "", // title of selected song
             searchURL: "", // videoId of selected song
+            searchArtist: "", // artist of selected song
             favourites: [], // array of favourited items that is synced up to Windows.localStorage("favourites")
             history: [], // array of history items that is synced up to Windows.localStorage("history")
+            relatedVids: [], // array of videos related to search result
         }
     }
 
@@ -55,6 +64,7 @@ class SearchScreen extends React.Component {
             this.setState({ history: res.list });
             localStorage.setItem("history", JSON.stringify(this.state.history));
         }
+        console.log(this.state.favourites, this.state.history);
     }
 
     // going to the next or previous item on this.state.searchResults array
@@ -78,88 +88,117 @@ class SearchScreen extends React.Component {
     }
 
     // updating input after typing in searchbar
-    handleInputState(input) { // passing in event.target.value
-        this.setState({ input });
+    handleInputState(output) { // passing in event.target.value
+        const setInput = () => output.target === "inputsong" ? this.setState({ inputSong: output.result }) : this.setState({ inputArtist: output.result }); // set this.state.inputSong/inputArtist based on event target id
+        setInput();
     }
 
-    // setting states after returning search results
+    // execute after returning search results
     searchState(searchResults) { // passing in searchResults object {title, url}
         this.setState({
             ...this.state,
-            input: "",
+            inputSong: "",
+            inputArtist: "",
+            artistSearch: [],
             searchResults,
             searchTitle: searchResults[this.state.searchIndex].title, // setting this.state.searchTitle and searchURL based on searchResults[searchIndex = 0]
             searchURL: searchResults[this.state.searchIndex].url,
+            searchArtist: searchResults[this.state.searchIndex].artist,
         })
     }
 
+    // execute after finding related videos to search result
+    searchRVidsState(relatedVids) { // passing in searchResults object {title, url, thumbnailurl}
+        this.setState({relatedVids})
+    }
+
+    // execute after selecting related video to play
+    selectRVidsState(video) {
+        this.setState({
+            ...this.state,
+            searchTitle: video.title,
+            searchURL: video.url,
+        })
+    }
+
+    // get an array of suggested artists based on song name in search
+    artistResultsState(artistResults) {
+        this.setState({artistResults})
+    }
+
     render() {
-        const { input } = this.state;
+        const { inputSong } = this.state;
+        const { inputArtist } = this.state;
+        const { artistResults } = this.state;
         const { searchTitle } = this.state;
         const { searchURL } = this.state;
+        const { searchArtist } = this.state;
         const { searchIndex } = this.state;
         const { favourites } = this.state;
         const { history } = this.state;
+        const { relatedVids } = this.state;
 
         return (
-            <>
-                <div className="webpage">
-                    <h1 id="header">The Karaoke Website</h1>
-                    <div className="topnavbar">
-                        {/* Search Bar Input */}
-                        <HandleInput
-                            input={input}
-                            handleInputState={this.handleInputState}
-                            searchState={this.searchState}
-                        />
-                        {/* Favourites and History Dropdown Lists */}
-                        <SelectList
-                            selectListState={this.selectListState}
-                            favourites={favourites}
-                            history={history}
-                        />
-                    </div>
-                    <div className="searchscreen">
-                        <div className="playerbox">
-                            <div className="videobox">
-                                {/* YouTube Player */}
-                                <Player
-                                    list={history}
-                                    title={searchTitle}
-                                    url={searchURL}
-                                    addListState={this.addListState}
-                                />
-                                <h3>{searchTitle}</h3>
-                            </div>
-                            <div className="vidnavbar">
-                                {/* Previous and Next Buttons */}
-                                <PrevNext
-                                    prevNextState={this.prevNextState}
-                                    index={searchIndex}
-                                />
-                                {/* Add to Favourites Button */}
-                                <FavButton
-                                    list={favourites}
-                                    title={searchTitle}
-                                    url={searchURL}
-                                    addListState={this.addListState}
-                                />
-                                <div>
-                                    <select className="ttsconfig"></select>
-                                    <button className="tts">Activate Text-to-Speech</button>
-                                    {/* This is for G1's Text-to-Speech */}
-                                </div>
-                            </div>
-                        </div>
-                        <div className="lyricbox">
-                            <p>This is for Aunt Pyone's lyrics</p>
-                        </div>
-                        <div className="relatedvids">
-                            <p>This is for related videos</p>
-                        </div>
-                    </div>
+            <div className="webpage">
+                <div className="topnavbar">
+                    {/* Search Bar Input */}
+                    <HandleInput
+                        inputSong={inputSong}
+                        inputArtist={inputArtist}
+                        artistResults = {artistResults}
+                        handleInputState={this.handleInputState}
+                        searchState={this.searchState}
+                        searchRVidsState={this.searchRVidsState}
+                        artistResultsState = {this.artistResultsState}
+                    />
+                    {/* Favourites and History Dropdown Lists */}
+                    <SelectList
+                        selectListState={this.selectListState}
+                        favourites={favourites}
+                        history={history}
+                    />
                 </div>
-            </>
+                <div className="searchscreen">
+                    <div className="playerbox">
+                        <div className="videobox">
+                            {/* YouTube Player */}
+                            <Player
+                                list={history}
+                                title={searchTitle}
+                                url={searchURL}
+                                artist={searchArtist}
+                                addListState={this.addListState}
+                            />
+                            <h3>{searchTitle}</h3>
+                            <h3>{searchArtist}</h3>
+                        </div>
+                        <div className="vidnavbar">
+                            {/* Previous and Next Buttons */}
+                            <PrevNext
+                                prevNextState={this.prevNextState}
+                                index={searchIndex}
+                            />
+                            {/* Add to Favourites Button */}
+                            <FavButton
+                                list={favourites}
+                                title={searchTitle}
+                                url={searchURL}
+                                artist={searchArtist}
+                                addListState={this.addListState}
+                            />
+                            <button className="lyricbutton">Display Lyrics</button>
+                        </div>
+                    </div>
+                    <div className="lyricbox">
+                        <p>This is for Aunt Pyone's lyrics</p>                        
+                        <MainScreen />
+                    </div>
+                    <RelatedVideos
+                        rvideos={relatedVids}
+                        selectRVidsState={this.selectRVidsState}
+                    />
+                </div>
+            </div>
         )
     }
 }

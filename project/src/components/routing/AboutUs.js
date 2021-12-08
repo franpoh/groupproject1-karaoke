@@ -1,4 +1,4 @@
-import { Routes, Route, Link } from "react-router-dom";
+import './styles/AboutUs.css'
 
 function AboutUs() {
     return (
@@ -9,6 +9,7 @@ function AboutUs() {
                         Hello there! We're from the SkillsUnion Cohort 2 Group 2.
                 </h3>
                 <div className='about-content'>
+
                     <p>
                             We have been taking the Software Developer Immersive course for 11 weeks and 
                             this web application is the fruit of what we've learned so far! 

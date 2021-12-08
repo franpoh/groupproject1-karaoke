@@ -1,5 +1,8 @@
+// Return value of selection from lists / generate lists from arrays / return History and Favourites list elements
+
 import React from "react";
 import { v4 as uuidv4 } from 'uuid';
+import "../SearchLayout.css";
 
 function SelectList(props) {
     function select(event) {

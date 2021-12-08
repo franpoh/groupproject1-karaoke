@@ -8,23 +8,21 @@ import {
 import SearchScreen from "../SearchScreen";
 import AboutUs from "./AboutUs";
 import ContactUs from "./ContactUs";
+import "./styles/Main.css";
 
   const Main = () => {
     return(
         <Router>
-            <div className="container">
+            <div className="nav-container">
+                    <div className = "header">
+                        <Link to="/"><h1>The Karaoke Website</h1></Link>
+                    </div>
                 <div className="menu">
-                    <div>
-                        <Link to="/">Homepage</Link>
-                        
-                        {/* Should I render <SearchScreen/> in Main.js? or is there another way to
-                        conditionally render the video, lyrics and related videos? */}
+                    <div className="menu-items">
+                        <Link to="/about-us"><h2>About Us</h2></Link>
                     </div>
-                    <div>
-                        <Link to="/about-us">About The Team!</Link>
-                    </div>
-                    <div>
-                        <Link to="/contact-us">Contact Us!</Link>
+                    <div className="menu-items">
+                        <Link to="/contact-us"><h2>Contact Us</h2></Link>
                     </div>
                 </div>
             </div>

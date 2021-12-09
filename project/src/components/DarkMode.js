@@ -8,8 +8,7 @@ function DarkMode () {
     let xmas = '🎅';
 
     const [darkMode, setdarkMode] = useState(night);
-    const [cssState, setcssState] = useState('night'); // css classname day with white background / black font or Xmas?
-    // cssState will be used in main div, <div className = `webpage ${cssState}`>
+    const [cssState, setcssState] = useState('night'); // css classname day with white background / black font or Xmas?    
 
     function handleClick() {
         if (darkMode === day) {            
@@ -23,7 +22,6 @@ function DarkMode () {
         } else if (darkMode === xmas) {
             setdarkMode(day);
             setcssState('day');
-            // document.getElementById("mainbody").style.backgroundImage = "url('https://www.adorama.com/alc/wp-content/uploads/2018/01/best-online-free-photography-courses-feature-825x465.jpg')";
             document.getElementById("mainbody").style.backgroundImage = `url(${xmasImage})`;
         }
         document.getElementById("mainbody").className = `webpage ${cssState}`; // add class, not override

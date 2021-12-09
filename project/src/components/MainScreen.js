@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import API from "../API-aaa";
-import '../index.css';
-import HandleInput from "./searching/HandleInput.js"
+import "./SearchLayout.css";
 import TextToSpeech from './text2speech';
 const reactStringReplace = require('react-string-replace');
 
@@ -9,8 +8,6 @@ class OvhLyric extends React.Component {
     constructor(props) {
         super();
         this.fetchOvhData = this.fetchOvhData.bind(this);
-        // this.handleArtist = this.handleArtist.bind(this);
-        // this.handleSong = this.handleSong.bind(this);
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
 
 
@@ -20,6 +17,7 @@ class OvhLyric extends React.Component {
             replacedSlashR: [],
             inputArtist: '',
             inputSong: '',
+            displayErrorMsg: ''
         };
     }
 
@@ -28,39 +26,24 @@ class OvhLyric extends React.Component {
         this.fetchOvhData();
     }
 
-    // handleArtist(e) {
-    //     this.setState({
-    //         ...this.state,
-    //         inputArtist: this.props.inputArtist,
-    //         inputSong: this.props.inputSong,
-    //     });
-    // }
-
-    // handleSong(e) {
-    //     this.setState({
-    //         ...this.state,
-    //         inputSong: e.target.value,
-    //     });
-    // }
-
     handleFormSubmit(e) {
         e.preventDefault();
 
         const p = new Promise((resolve) => {
-            const cleanArtist = this.props.inputArtist.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"");
-            const cleanSong = this.props.inputSong.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"");
-            
+            const cleanArtist = this.props.inputArtist.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "");
+            const cleanSong = this.props.inputSong.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "");
+
             this.setState({
                 ...this.state,
                 inputArtist: cleanArtist,
                 inputSong: cleanSong,
-            }); 
+            });
 
             console.log("TEST! ", this.state.inputArtist);
             console.log("TEST! ", this.state.inputSong);
             resolve("SUCCESS")
         })
-        
+
         p.then((res) => {
             console.log(res);
             this.fetchOvhData();
@@ -68,23 +51,29 @@ class OvhLyric extends React.Component {
     }
 
     async fetchOvhData() {
-        // e.preventDefault();
         console.log("TEST1! ", this.state.inputArtist);
         console.log("TEST1! ", this.state.inputSong);
-        if (this.state.inputArtist && this.state.inputSong) {
-            const response = await API.get(`/${this.state.inputArtist}/${this.state.inputSong}`);
-            let lyrics = [];
-            if (response.status === 200) {
-                lyrics = response.data.lyrics;
-            }
-            console.log("Full API data: ", response);
-            const replacedSlashR = lyrics.replace(/\r/g, ' ');
-            console.log("lyrics  format: ", replacedSlashR);
+        try {
+            if (this.state.inputArtist && this.state.inputSong) {
+                const response = await API.get(`/${this.state.inputArtist}/${this.state.inputSong}`);
+                let lyrics = [];
+                if (response.status === 200) {
+                    lyrics = response.data.lyrics;
+                }
+                console.log("Full API data: ", response);
+                const replacedSlashR = lyrics.replace(/\r/g, ' ');
+                console.log("lyrics  format: ", replacedSlashR);
 
+                this.setState({
+                    ...this.state,
+                    lyrics,
+                    replacedSlashR,
+                });
+            }
+        } catch (error) {
             this.setState({
                 ...this.state,
-                lyrics,
-                replacedSlashR,
+                displayErrorMsg: "Lyrics not found...",
             });
         }
     }
@@ -92,6 +81,7 @@ class OvhLyric extends React.Component {
     render() {
         const { inputSong } = this.state;
         const { inputArtist } = this.state;
+        const { displayErrorMsg } = this.state;
         const { lyrics } = this.state;
         const { replacedSlashR } = this.state;
         // console.log('Hello printing lyric: ', lyrics); //this console logs formatted version but format disappears when rendered to HTML
@@ -117,25 +107,25 @@ class OvhLyric extends React.Component {
 
             <>
                 <form onSubmit={this.handleFormSubmit}>
-                    <input type='text' placeholder='artist' 
-                        // onChange={this.handleArtist} 
+                    {/* <input type='text' placeholder='artist'
                         value={inputArtist}>
                     </input>
-                    <input type='text' placeholder='song' 
-                        // onChange={this.handleSong} 
+                    <input type='text' placeholder='song'
                         value={inputSong}>
-                    </input>
-                    <input type='submit' value='Add'></input>
+                    </input> */}
+                    <input type='submit' value='Display Lyrics'></input>
                 </form>
-
-                <div>
-                    <h4 style={{ textAlign: 'center', padding: '20px' }}>
-                        {formattedLyrics}
-                    </h4>
-                </div>
                 <div className='displayWindow2'>
                     <TextToSpeech sendOutput={submitContent} />
                 </div>
+
+                <div className='displayWindow2'>
+                    <p >
+                        {formattedLyrics}
+                        {displayErrorMsg}
+                    </p>
+                </div>
+
 
             </>
         );
@@ -143,58 +133,3 @@ class OvhLyric extends React.Component {
 }
 
 export default OvhLyric;
-
-
-
-// function Ovh() {
-
-//     const [artist, setArtist] = useState('');
-//     const [title, setTitle] = useState('');
-//     const [lyrics, setLyrics] = useState([]);
-
-//     const handleOnChangeArtist = (event) => {
-//         setArtist(event.target.value);
-//     }
-
-//     const handleOnChangeTitle = (event) => {
-//         setTitle(event.target.value);
-
-//     }
-
-//     async function handleSubmit(event) {
-//         event.preventDefault();
-//          const response = await API.get(`/${artist}/${title}`);
-        // const response = await API.get('bee gees/how deep is your love');
-//         if (response.status === 200) {
-//             setLyrics(response.data.lyrics);
-//             console.log(setLyrics);
-//         }
-//         else {
-//             console.log('There has been an error of code: ', response.status);
-//             return;
-//         }
-
-//     }
-//     useEffect(() => {
-//         console.log("Child component mounted"); // On Mount runs one time when the application is mounted
-
-//         // On Unmount
-//         return () => {
-//             console.log("Child component unmounted");
-//         };
-//     }, []);
-
-
-//     return (
-//         <>
-//             { }
-//             <form onSubmit={handleSubmit}>
-//                 <input type='text' placeholder='Artist' onChange={handleOnChangeArtist} value={artist}></input>
-//                 <input type='text' placeholder='Song Title' onChange={handleOnChangeTitle} value={title}></input>
-//                 <input type='submit' value='Add'></input>
-//             </form>
-//         </>
-//     )
-
-// }
-// export default Ovh;

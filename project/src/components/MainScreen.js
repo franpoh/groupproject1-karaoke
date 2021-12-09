@@ -87,7 +87,6 @@ class OvhLyric extends React.Component {
                 replacedSlashR,
             });
         }
-
     }
 
     render() {

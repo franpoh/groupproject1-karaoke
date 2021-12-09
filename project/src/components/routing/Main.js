@@ -3,33 +3,42 @@ import {
     BrowserRouter as Router,
     Routes,
     Route,
-    Link
-} from "react-router-dom";
+    Link,
+  } from "react-router-dom";
 import SearchScreen from "../SearchScreen";
 import AboutUs from "./AboutUs";
+import ContactUs from "./ContactUs";
+import "./styles/Main.css";
 
-const Main = () => {
+  const Main = () => {
     return(
         <Router>
-            <div className="router-container">
-                <div className = "router-menu">
-                    <h1>
-                        <Link to="/">The Karaoke Website</Link>
-                    </h1>
-                    <div>
-                        <AboutUs/>
+            <div className="nav-container">
+                    <div className = "main-header">
+                        <Link to="/"><h1>The Karaoke Website</h1></Link>
+                    </div>
+                <div className="menu">
+                    <div className="menu-items">
+                        <Link to="/about-us"><h2>About Us</h2></Link>
+                    </div>
+                    <div className="menu-items">
+                        <Link to="/contact-us"><h2>Contact Us</h2></Link>
                     </div>
                 </div>
-                <div className = "content">
-                    <Routes>
-                        <Route path ="/">
-                            <SearchScreen/>
-                        </Route>
-                    </Routes>
-                </div>
+            </div>
+            <div className="content">
+                <Routes>
+                    <Route path = "/about-us" element = {<AboutUs/>}>
+                    </Route>
+                    <Route path = "/contact-us" element = {<ContactUs/>}>
+                    </Route>
+                    <Route path = "/" element = {<SearchScreen/>}>
+                    </Route>
+                </Routes>
             </div>
         </Router>
     );
-}
+  }
 
-export default Main;
+
+  export default Main;

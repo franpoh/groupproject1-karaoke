@@ -26,7 +26,8 @@ import "./styles/Main.css";
                     </div>
                 </div>
             </div>
-            <div className="content">
+            {/* <div className="content"> */}
+            <div>
                 <Routes>
                     <Route path = "/about-us" element = {<AboutUs/>}>
                     </Route>

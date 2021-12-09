@@ -4,7 +4,7 @@
     background-color: rgba(243, 211, 28, 0.9);
     border: 0;
     padding-top: 1px;
-    margin-bottom: 25px;
+    /* margin-bottom: 25px; G1: to remove the white bar between nav and main body*/
 }
 
 .nav-container h1{

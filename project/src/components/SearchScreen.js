@@ -136,7 +136,7 @@ class SearchScreen extends React.Component {
         const { relatedVids } = this.state;
 
         return (
-            <div id="mainbody" className="webpage day">
+            <div id="mainbody" className="webpage night">
                 <div className="topnavbar">
                     {/* Search Bar Input */}
                     <HandleInput

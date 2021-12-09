@@ -79,7 +79,8 @@ class OvhLyric extends React.Component {
         } catch (error) {
             this.setState({
                 ...this.state,
-                displayErrorMsg: "Lyrics not found...",
+                lyrics: "Lyrics not found...",
+                // displayErrorMsg: "Lyrics not found...",
             });
         }
     }
@@ -114,13 +115,13 @@ class OvhLyric extends React.Component {
                 <div className="displayWindow2">
                     <TextToSpeech sendOutput={submitContent} />
                 </div>
-                <div className="displayWindow2">
+                <div className="displayWindow2" style={{display:lyrics.length===0? 'none': 'inline'}}>
                     <textarea
                         readOnly
                         placeholder="incoming lyrics data"
                         value={lyrics}
                         rows="34"
-                        cols="9000"
+                        cols="52"
                     />
                     {displayErrorMsg}
                 </div>

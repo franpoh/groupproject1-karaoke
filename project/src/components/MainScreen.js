@@ -6,11 +6,11 @@ import TextToSpeech from './text2speech';
 const reactStringReplace = require('react-string-replace');
 
 class OvhLyric extends React.Component {
-    constructor() {
+    constructor(props) {
         super();
         this.fetchOvhData = this.fetchOvhData.bind(this);
-        this.handleArtist = this.handleArtist.bind(this);
-        this.handleSong = this.handleSong.bind(this);
+        // this.handleArtist = this.handleArtist.bind(this);
+        // this.handleSong = this.handleSong.bind(this);
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
 
 
@@ -28,29 +28,49 @@ class OvhLyric extends React.Component {
         this.fetchOvhData();
     }
 
-    handleArtist(e) {
-        this.setState({
-            ...this.state,
-            inputArtist: e.target.value,
-        });
-    }
+    // handleArtist(e) {
+    //     this.setState({
+    //         ...this.state,
+    //         inputArtist: this.props.inputArtist,
+    //         inputSong: this.props.inputSong,
+    //     });
+    // }
 
-    handleSong(e) {
-        this.setState({
-            ...this.state,
-            inputSong: e.target.value,
-        });
-    }
+    // handleSong(e) {
+    //     this.setState({
+    //         ...this.state,
+    //         inputSong: e.target.value,
+    //     });
+    // }
 
     handleFormSubmit(e) {
         e.preventDefault();
-        this.fetchOvhData();
+
+        const p = new Promise((resolve) => {
+            const cleanArtist = this.props.inputArtist.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"");
+            const cleanSong = this.props.inputSong.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"");
+            
+            this.setState({
+                ...this.state,
+                inputArtist: cleanArtist,
+                inputSong: cleanSong,
+            }); 
+
+            console.log("TEST! ", this.state.inputArtist);
+            console.log("TEST! ", this.state.inputSong);
+            resolve("SUCCESS")
+        })
+        
+        p.then((res) => {
+            console.log(res);
+            this.fetchOvhData();
+        });
     }
 
     async fetchOvhData() {
         // e.preventDefault();
-        console.log(this.state.inputArtist);
-        console.log(this.state.inputSong);
+        console.log("TEST1! ", this.state.inputArtist);
+        console.log("TEST1! ", this.state.inputSong);
         if (this.state.inputArtist && this.state.inputSong) {
             const response = await API.get(`/${this.state.inputArtist}/${this.state.inputSong}`);
             let lyrics = [];
@@ -98,9 +118,13 @@ class OvhLyric extends React.Component {
 
             <>
                 <form onSubmit={this.handleFormSubmit}>
-                    <input type='text' placeholder='artist' onChange={this.handleArtist} value={inputArtist}>
+                    <input type='text' placeholder='artist' 
+                        // onChange={this.handleArtist} 
+                        value={inputArtist}>
                     </input>
-                    <input type='text' placeholder='song' onChange={this.handleSong} value={inputSong}>
+                    <input type='text' placeholder='song' 
+                        // onChange={this.handleSong} 
+                        value={inputSong}>
                     </input>
                     <input type='submit' value='Add'></input>
                 </form>

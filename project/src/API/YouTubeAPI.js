@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const key = "AIzaSyC4fg8lFBo9e276Qf6Xbw16sP2TarXkb6E"; // generated credentials from Google API and Services
+const key = "AIzaSyDfAJ42a9ADTNUaiY7BsDCvLTog_kVgHso"; // generated credentials from Google API and Services
 
 const ytAPI = axios.create({
     baseURL: "https://www.googleapis.com/youtube/v3",

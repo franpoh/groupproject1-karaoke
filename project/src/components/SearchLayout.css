@@ -16,7 +16,7 @@ body {
 }
 
 .night {
-  background-color: black;
+  background-color: rgba(26, 26, 26);
   color: white;
 }
 

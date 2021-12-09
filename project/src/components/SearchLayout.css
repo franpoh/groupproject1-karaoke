@@ -79,17 +79,27 @@ body {
   max-width: 250px;
 }
 
+/* .displayWindow2:hover, */
 .displayWindow2 {
   position: relative;
   margin: 1%;
   padding-left: 5px;
   display: flex;
   font-size: 17px;
-  background-color: rgb(206, 202, 206);
+  /* background-color: rgb(206, 202, 206); */
   color: black;
   border: 1px solid lightgrey;
   width: auto;
   height: auto;
   align-items: flex-start;
   text-align: start;
+}
+
+textarea {
+  font-size: 15px;
+  resize: none;
+}
+textarea::-webkit-input-placeholder {
+  text-align: center;
+  line-height: 560px;
 }

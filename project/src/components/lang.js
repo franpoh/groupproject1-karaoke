@@ -1,4 +1,4 @@
-
+// 8 dec: Currently not in use due non-eng limits on char submission for API
 
 const langList = [
     {

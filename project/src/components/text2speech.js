@@ -3,14 +3,18 @@ import API from '../API-g1';
 // import langList from './lang';
 
 function TextToSpeech(props) {
+        
+    let waitLyrics = 'none';
+    if (props.sendOutput.length!==0) {
+        waitLyrics = 'inline';        
+    };
     
     let response2;
     let response3;
     let response4;
 
-    const [playCount, setplayCount] = useState(0);
-    // const [textSubmitting, settextSubmitting] = useState("");
-    const [rcvAudio, setrcvAudio] = useState("");
+    const [playCount, setplayCount] = useState(0);    
+    const [rcvAudio, setrcvAudio] = useState(""); // song audio part 1
     const [reserveAudio2, setreserveAudio2] = useState(""); // song audio part 2 if needed
     const [reserveAudio3, setreserveAudio3] = useState(""); // song audio part 3 if needed
     const [reserveAudio4, setreserveAudio4] = useState(""); // song audio part 4 if needed
@@ -19,16 +23,12 @@ function TextToSpeech(props) {
     const selectGender = () => {        
 
         return (
-            <select id='lang' name = 'gender' defaultValue='Linda' onChange={handleGenderChange}>
+            <select id='lang' name = 'gender' defaultValue='Linda' onChange={handleGenderChange} style={{display:waitLyrics}}>
                 <option key='gender1' value='Linda'>Female</option>
                 <option key='gender2' value='John'>Male</option>                
             </select>
         )
     }
-
-    // function handleInputChange (e) {
-    //     settextSubmitting(e.target.value);
-    // }
 
     function handleGenderChange (e) {
         setgenderSubmit(e.target.value);
@@ -40,11 +40,6 @@ function TextToSpeech(props) {
         console.log('Submitting text: ', props.sendOutput);
         // console.log('Submitting lang:', langSubmit);
         console.log('Submitting text.length: ', props.sendOutput.length);
-
-        if (props.sendOutput === '') {
-            alert('string empty!'); // replace before PRODUCTION
-            return;
-        } // dont waste GET attempt with empty string, daily 350 limit
 
         let testABC = props.sendOutput.replace(/\r/g,'. '); // text to speech api uses '. ' for pause, need the space after punctuation
         testABC = props.sendOutput.replace(/\n/g,'. '); // 1st argu is regex /string/g where g is global, whole string, /i will be case-insensitive /m multiline
@@ -97,6 +92,7 @@ function TextToSpeech(props) {
 
         // let apikey = "5"; // false key for error testing
         let apikey = "52b16d4b4f1246ee800ea25d1b9fe536"; // key tied to g1 email
+        // let apikey = "3078a5b6303a4d8f9c134eb7e115fc41"; // key tied to g1 email2 for presentation
         // let apilang = "zh-cn";
         let apilang = "en-us";
         let apicodec = "MP3";
@@ -104,6 +100,7 @@ function TextToSpeech(props) {
         let apiformat = "8khz_8bit_mono"; // default is 8khz_8bit_mono
         let apiB64Status = true; // default is false, true for output as Base64 string format
 
+        // submitting text to API in 4 parts if necessary
         try {
             const response = await API.get(`/?key=${apikey}&hl=${apilang}&c=${apicodec}&f=${apiformat}&v=${genderSubmit}&src=${part1}&b64=${apiB64Status}`);
 
@@ -137,21 +134,19 @@ function TextToSpeech(props) {
     const playAudio = () => {
 
         if (rcvAudio==="") {
-            return (
-                <p>no audio currently</p>
-            )
+            return;            
+            //     <p>no audio currently</p>            
         }
 
         if (rcvAudio.substring(0,5) === "ERROR") {
-            return (
-                <p>{rcvAudio} Please contact admin</p>
-            )
+            return;
+            // <p>{rcvAudio} Please contact admin</p>            
         } // api has its own defined error set
 
         return (
             <div>
-            <p>have audio {playCount}</p>
-            <audio id="audioPlayer" src={rcvAudio} autoPlay="autoplay" onEnded={checkPlay}>audio not supported</audio>
+            {/* <p>have audio {playCount}</p> */}
+            <audio id="audioPlayer" src={rcvAudio} autoPlay="autoplay" onEnded={checkPlay} controls style={{height: '22px'}}>audio not supported</audio>            
             </div>
         )
 
@@ -165,7 +160,7 @@ function TextToSpeech(props) {
         if (playCount === 4) {
             setplayCount(0);
             console.log('playcount: ', playCount);
-            return;
+            return; // reset play count to 0 once part 4 end
         }
         if (playCount === 3) {
             setplayCount(4);
@@ -189,12 +184,10 @@ function TextToSpeech(props) {
 
     return (
         <div>
-            <div className='displayWindow2'>                
-                <form onSubmit={handleSubmit}>                    
-
+            <div>
+                <form onSubmit={handleSubmit}>
                     {selectGender()}
-
-                    <input type='submit' value='Submit' />
+                    <input type='submit' value='Voice Reader' style={{display:waitLyrics}}/>
                 </form>
                 {playAudio(rcvAudio)}
             </div>

@@ -10,6 +10,7 @@ import HandleInput from "./searching/HandleInput"
 import RelatedVideos from "./searching/RelatedVideo";
 import Main from "./routing/Main.js";
 import MainScreen from './MainScreen';
+import DarkMode from "./DarkMode";
 
 class SearchScreen extends React.Component {
     constructor() {
@@ -135,7 +136,8 @@ class SearchScreen extends React.Component {
         const { relatedVids } = this.state;
 
         return (
-            <div className="webpage">
+            <div id="mainbody" className = "webpage day">                
+                <h1 id="header">The Karaoke Website</h1>
                 <div className="topnavbar">
                     {/* Search Bar Input */}
                     <HandleInput
@@ -153,6 +155,7 @@ class SearchScreen extends React.Component {
                         favourites={favourites}
                         history={history}
                     />
+                    <DarkMode />
                 </div>
                 <div className="searchscreen">
                     <div className="playerbox">

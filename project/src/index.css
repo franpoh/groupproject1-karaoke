@@ -45,10 +45,10 @@ code {
   position: relative;  
   margin: 1%;
   display:flex;
-  background-color:rgb(235, 206, 235);
+  /* background-color:rgb(235, 206, 235); */
   color: black;  
-  border: 1px solid purple;  
-  width: 600px;
+  border: 1px solid lightgrey;  
+  width: auto;
   height: auto;
   align-items: flex-start;  
 }

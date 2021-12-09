@@ -28,13 +28,13 @@ function SelectList(props) {
     return (
         // options are generated from the favourites and history array by .map()
         <div>
-            <select id="favourites" onChange={select}>
+            <select className="dropdown" id="favourites" onChange={select}>
                 <option value="default" selected disabled>Favourites</option>
                 {props.favourites.map((item) => {
                     return <option key={uuidv4()}>{item.vtitle}</option>
                 })}
             </select>
-            <select id="history" onChange={select}>
+            <select className="dropdown" id="history" onChange={select}>
                 <option value="default" selected disabled>History</option>
                 {props.history.map((item) => {
                     return <option key={uuidv4()}>{item.vtitle}</option>

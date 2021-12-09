@@ -67,7 +67,7 @@ class SearchScreen extends React.Component {
         this.setState({
             ...this.state,
             searchIndex,
-            searchVTitle: this.state.searchResults[searchIndex].vtitle,
+            searchTitle: this.state.searchResults[searchIndex].title,
             searchURL: this.state.searchResults[searchIndex].url,
             searchArtist: this.state.searchResults[searchIndex].artist,
             searchVTitle: this.state.searchResults[searchIndex].vtitle,
@@ -121,7 +121,7 @@ class SearchScreen extends React.Component {
         this.setState({
             ...this.state,
             searchTitle: res[0].title,
-            searchVTitle: video.title,
+            searchVTitle: video.vtitle,
             searchURL: video.url,
             searchArtist: res[0].artist,
         })
@@ -146,7 +146,7 @@ class SearchScreen extends React.Component {
         const { relatedVids } = this.state;
 
         return (
-            <div id="mainbody" className="webpage night">
+            <div id="mainbody" className="webpage">
                 <div className="topnavbar">
                     {/* Search Bar Input */}
                     <HandleInput
@@ -174,13 +174,11 @@ class SearchScreen extends React.Component {
                             <Player
                                 list={history}
                                 title={searchTitle}
-                                vtitle = {searchVTitle}
+                                vtitle={searchVTitle}
                                 url={searchURL}
                                 artist={searchArtist}
                                 addListState={this.addListState}
                             />
-                            <h3 id="videotitle">{searchVTitle}</h3>
-                            <h3 id="videoartist">{searchArtist}</h3>
                         </div>
                         <div className="vidnavbar">
                             {/* Previous and Next Buttons */}
@@ -196,20 +194,22 @@ class SearchScreen extends React.Component {
                             <FavButton
                                 list={favourites}
                                 title={searchTitle}
-                                vtitle = {searchVTitle}
+                                vtitle={searchVTitle}
                                 url={searchURL}
                                 artist={searchArtist}
                                 addListState={this.addListState}
                             />
                             {/* <button className="lyricbutton">Display Lyrics</button> */}
                         </div>
+                        <div>
+                            <h3 className="videoinfo" id="videotitle">{searchVTitle}</h3>
+                            <h3 className="videoinfo" id="videoartist">{searchArtist}</h3>
+                        </div>
                     </div>
-                    <div className="lyricbox">
-                        <MainScreen
-                            inputArtist={searchArtist}
-                            inputSong={searchTitle}
-                        />
-                    </div>
+                    <MainScreen
+                        inputArtist={searchArtist}
+                        inputSong={searchTitle}
+                    />
                     <RelatedVideos
                         rvideos={relatedVids}
                         artistResults={artistResults}

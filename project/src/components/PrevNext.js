@@ -20,8 +20,8 @@ function PrevNext(props) {
 
     return (
         <div>
-            <button id="prev" name="prev" onClick={onSwitch}>Previous</button>
-            <button id="next" name="next" onClick={onSwitch}>Next</button>
+            <button className="button" id="prev" name="prev" onClick={onSwitch}>Previous</button>
+            <button className="button" id="next" name="next" onClick={onSwitch}>Next</button>
         </div>
     )
 }

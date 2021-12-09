@@ -28,6 +28,7 @@ function HandleInput(props) {
 
             <select
                 id="suggsong"
+                className="dropdown"
                 onChange={(event) => setInput(props, event)}
                 value={props.inputSong}
                 disabled
@@ -40,6 +41,7 @@ function HandleInput(props) {
 
             <select
                 id="suggartist"
+                className="dropdown"
                 onChange={(event) => setInput(props, event)}
                 value={props.inputArtist}
                 disabled
@@ -50,7 +52,7 @@ function HandleInput(props) {
                 })}
             </select>
 
-            <button id="searchbutton" disabled>Search</button>
+            <button className="button" id="searchbutton" disabled>Search</button>
         </form> // run Search.js/search() upon submission
     )
 }

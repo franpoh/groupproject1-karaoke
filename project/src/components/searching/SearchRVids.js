@@ -16,7 +16,7 @@ async function SearchRVids(props, searchResult) {
 
         const result = filterSnippet.map((item) => {
             return {
-                title: item.snippet.title, // title of video
+                vtitle: item.snippet.title, // title of video
                 url: item.id.videoId, // video url
                 thumbnailurl: item.snippet.thumbnails.default.url // url of thumbnail picture
             }

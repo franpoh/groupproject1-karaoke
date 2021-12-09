@@ -1,12 +1,13 @@
-body {
-  /* background-color: white; */
-}
-
 .webpage {
   display: flex;
   flex-flow: column wrap;
   align-items: center;
-  row-gap: 5vh;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+#wholebody {
+  display: flex;
+  flex-flow: column wrap;
 }
 
 /* g1 */
@@ -32,38 +33,96 @@ body {
 
 .searchscreen {
   display: flex;
-  column-gap: 5vw;
+  flex-flow: row wrap;
+  column-gap: 2vw;
+  justify-content: center;
 }
 
 .playerbox {
   display: flex;
   flex-flow: column wrap;
-  margin: auto;
-  row-gap: 5vh;
+  row-gap: 2vh;
 }
 
-.topnavbar {
-  display: flex;
+.videoinfo {
+  font-weight: lighter;
 }
-
-.vidnavbar {
-  display: flex;
-}
-
-/* .lyricbox {
-  width: 500px;
-  height: 500px;
-  margin: auto;
-} */
 
 .relatedvids {
   display: flex;
   flex-flow: column;
-  width: 500px;
-  height: 500px;
-  margin: auto;
+  width: 15vw;
+  height: 67vh;
+  margin: 0;
+  overflow: scroll;
   align-items: center;
-  border: 1px solid lightgrey;
+}
+
+.lyricbox {
+  width: 27vw;
+}
+
+.topnavbar {
+  display: flex;
+  flex-flow: row wrap;
+  column-gap: 1vw;
+  margin: 4vh 0;
+}
+
+.dropdown {
+  width: 200px;
+  height: 40px;
+  font-size: 17px;
+  text-align: center;
+  margin: 0 1vw;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+#inputsong {
+  width: 200px;
+  height: 33px;
+  font-size: 17px;
+  text-align: center;
+  margin: 0 1vw;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.button {
+  background: rgb(255, 255, 255);
+  height: 30px;
+  border: 1px solid black;
+  width: fit-content;
+  padding: 0 10px;
+  border-radius: 5px;
+  font-size: 17px;
+}
+
+.button:hover {
+  cursor: pointer;
+}
+
+.dropdown:hover {
+  cursor: pointer;
+}
+
+.rvid:hover {
+  cursor: pointer;
+}
+
+#lang {
+  height: 30px;
+  border: 1px solid black;
+  border-radius: 5px;
+  font-size: 17px;
+  padding: 0 10px;
+  text-align: center;
+}
+
+.vidnavbar {
+  display: flex;
+  column-gap: 1vw;;
 }
 
 .rvidthumbnail {
@@ -88,10 +147,7 @@ body {
   font-size: 17px;
   /* background-color: rgb(206, 202, 206); */
   color: black;
-  border: 1px solid lightgrey;
-  width: auto;
-  height: auto;
-  max-width: 500px;
+  width: 27vw;
   align-items: flex-start;
   text-align: start;
 }

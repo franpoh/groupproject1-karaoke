@@ -5,9 +5,9 @@ import API from '../API-g1';
 function TextToSpeech(props) {
         
     let waitLyrics = 'none';
-    if (props.sendOutput.length!==0) {
-        waitLyrics = 'inline';        
-    };
+    if (props.sendOutput.length === 0 || props.sendOutput === 'Lyrics not found...') {
+        waitLyrics = 'none';
+    } else waitLyrics = 'inline';
     
     let response2;
     let response3;

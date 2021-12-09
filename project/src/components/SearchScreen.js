@@ -146,8 +146,7 @@ class SearchScreen extends React.Component {
         const { relatedVids } = this.state;
 
         return (
-            <div id="mainbody" className="webpage day">
-                <h1 id="header">The Karaoke Website</h1>
+            <div id="mainbody" className="webpage night">
                 <div className="topnavbar">
                     {/* Search Bar Input */}
                     <HandleInput
@@ -187,8 +186,12 @@ class SearchScreen extends React.Component {
                             {/* Previous and Next Buttons */}
                             <PrevNext
                                 prevNextState={this.prevNextState}
-                                index={searchIndex}
+                                index={searchIndex} array={this.state.searchResults}
                             />
+                            {/* <PrevNext
+                                prevNextState={this.prevNextState}
+                                index={searchIndex}
+                            /> */}
                             {/* Add to Favourites Button */}
                             <FavButton
                                 list={favourites}

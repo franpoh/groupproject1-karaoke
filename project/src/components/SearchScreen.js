@@ -59,7 +59,6 @@ class SearchScreen extends React.Component {
             this.setState({ history: res.list });
             localStorage.setItem("history", JSON.stringify(this.state.history));
         }
-        console.log(this.state.favourites, this.state.history);
     }
 
     // going to the next or previous item on this.state.searchResults array
@@ -76,7 +75,7 @@ class SearchScreen extends React.Component {
     selectListState(video) { // passing in selected video's title, url
         this.setState({
             ...this.state,
-            searchTitle: video.title,
+            searchTitle: video.title,      
             searchURL: video.url,
             searchIndex: 0, // reset searchIndex
         })
@@ -84,22 +83,24 @@ class SearchScreen extends React.Component {
 
     // updating input after typing in searchbar
     handleInputState(output) { // passing in event.target.value
-        const setInput = () => output.target === "inputsong" ? this.setState({ inputSong: output.result }) : this.setState({ inputArtist: output.result }); // set this.state.inputSong/inputArtist based on event target id
+        const setInput = () => output.target === "suggsong" ? this.setState({ inputSong: output.result }) : this.setState({ inputArtist: output.result }); // set this.state.inputSong/inputArtist based on event target id
         setInput();
+        document.getElementById("searchbutton").disabled = false; // enable search button when searchbar is not empty
     }
 
     // execute after returning search results
     searchState(searchResults) { // passing in searchResults object {title, url}
         this.setState({
             ...this.state,
-            inputSong: "",
-            inputArtist: "",
+            // inputSong: "",
+            // inputArtist: "",
             artistSearch: [],
             searchResults,
             searchTitle: searchResults[this.state.searchIndex].title, // setting this.state.searchTitle and searchURL based on searchResults[searchIndex = 0]
             searchURL: searchResults[this.state.searchIndex].url,
             searchArtist: searchResults[this.state.searchIndex].artist,
         })
+        console.log("SearchScreen: ", this.state.searchTitle, " ", this.state.searchArtist)
     }
 
     // execute after finding related videos to search result
@@ -108,11 +109,12 @@ class SearchScreen extends React.Component {
     }
 
     // execute after selecting related video to play
-    selectRVidsState(video) {
+    selectRVidsState(video, artist) {
         this.setState({
             ...this.state,
             searchTitle: video.title,
             searchURL: video.url,
+            searchArtist: artist,
         })
     }
 
@@ -166,8 +168,8 @@ class SearchScreen extends React.Component {
                                 artist={searchArtist}
                                 addListState={this.addListState}
                             />
-                            <h3>{searchTitle}</h3>
-                            <h3>{searchArtist}</h3>
+                            <h3 id="videotitle">{searchTitle}</h3>
+                            <h3 id="videoartist">{searchArtist}</h3>
                         </div>
                         <div className="vidnavbar">
                             {/* Previous and Next Buttons */}
@@ -188,11 +190,16 @@ class SearchScreen extends React.Component {
                     </div>
                     <div className="lyricbox">
                         <p>This is for Aunt Pyone's lyrics</p>                        
-                        <MainScreen />
+                        <MainScreen 
+                            inputArtist={searchArtist}
+                            inputSong={searchTitle}
+                        />
                     </div>
                     <RelatedVideos
                         rvideos={relatedVids}
+                        artistResults={artistResults}
                         selectRVidsState={this.selectRVidsState}
+                        artistResultsState = {this.artistResultsState}
                     />
                 </div>
             </div>

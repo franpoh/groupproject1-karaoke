@@ -1,5 +1,7 @@
 This folder contains functions and elements relating to Search
 
+ArtistSuggest: Send event target values and props to SearchArtist.js/searchArtist
+
 HandleInput: Receive song title and artist search inputs / return search textbox elements and search button
 
 RelatedVideo: Play video when clicked / Return related videos element

@@ -14,11 +14,9 @@ function RelatedVideos(props) {
             resolve(video);
         })
 
-        p.then(async (res) => {
-            const sTitle = await res.title.slice(0, 30);
-            const sArtists = await searchArtist(props, sTitle); // search for artists based on this.state.searchTitle and return value
-            const artist = sArtists[0];
-            props.selectRVidsState(res, artist.artist) // set this.state.searchTitle/searchURL/searchArtist
+        p.then(async (video) => {
+            const sTitle = await video.title;
+            searchArtist(props, video, sTitle, event); // search for artists based on this.state.searchTitle
         })
     }
 

@@ -1,7 +1,6 @@
 // send event target values and props to SearchArtist.js/searchArtist
 
 import searchArtist from "./SearchArtist";
-import setInput from "./SetInput";
 import "../SearchLayout.css";
 
 function artSuggest(props, event) {
@@ -15,7 +14,8 @@ function artSuggest(props, event) {
     });
 
     p.then((res) => {
-        searchArtist(props, res); // if event target value has a string, execute searchArtist()
+        searchArtist(props, " ", res, event); // if event target value has a string, execute searchArtist()
+        document.getElementById("suggsong").disabled = false;
     }).catch(res => res)
 }
 

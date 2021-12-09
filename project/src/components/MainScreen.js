@@ -107,12 +107,12 @@ class OvhLyric extends React.Component {
 
             <>
                 <form onSubmit={this.handleFormSubmit}>
-                    {/* <input type='text' placeholder='artist'
+                    <input type='text' placeholder='artist'
                         value={inputArtist}>
                     </input>
                     <input type='text' placeholder='song'
                         value={inputSong}>
-                    </input> */}
+                    </input>
                     <input type='submit' value='Display Lyrics'></input>
                 </form>
                 <div className='displayWindow2'>
@@ -120,9 +120,9 @@ class OvhLyric extends React.Component {
                 </div>
 
                 <div className='displayWindow2'>
-                    <p >
+                    <p>
                         {formattedLyrics}
-                        {displayErrorMsg}
+                        {displayErrorMsg}        
                     </p>
                 </div>
 

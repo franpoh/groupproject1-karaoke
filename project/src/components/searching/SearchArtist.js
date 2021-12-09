@@ -2,16 +2,24 @@
 
 import ShazamAPI from "../../API/ShazamAPI.js"
 
-async function searchArtist(props, song) {
-    let searchResults = await ShazamAPI.get("/search", {
-        params: { term: song }, // pass in this.state.inputSong from searchbar
-    }).then((response) => {
-        if (Object.entries(response.data).length === 0) { // if return object has no key-value pairs as a result of not finding an artist
-            const result = []; 
-            result.unshift({title: "Not Found", artist: "Not Found"}); // return array with artist not found object
-            return result;
-        } else {
-            const data = response.data.tracks.hits;
+function searchArtist(props, video, song, event) {
+
+    let outerP = new Promise((resolve) => {
+
+        let innerP = new Promise(async (resolve, reject) => {
+            let notFound = [{ title: "Not Found", artist: "Not Found" }];
+            let found = await ShazamAPI.get("/search", {
+                params: { term: song }, // pass in this.state.inputSong from searchbar
+            })
+            if (Object.entries(found.data).length >= 2) {
+                resolve(found);
+            } else {
+                reject(notFound);
+            }
+        })
+
+        let response = innerP.then((found) => {
+            const data = found.data.tracks.hits;
             const result = data.map((item) => {
                 return {
                     title: item.track.title, // song title
@@ -19,12 +27,23 @@ async function searchArtist(props, song) {
                 }
             })
             return result; // searchResults = {artist}
+        }).catch((error) => {
+            console.log('Shazam error 429!');
+            return error;
+        });
+
+        resolve(response);
+    });
+
+    outerP.then((res) => {
+        props.artistResultsState(res);
+        if (event.target.id === song) { // this is for RelatedVideo.js/select()
+            props.selectRVidsState(video, res); // set state for searchTitle, searchURL, searchVTitle, searchArtist
         }
+        document.getElementById("suggartist").value = "default";
+        document.getElementById("suggsong").value = "default";
+        return res;
     })
-    props.artistResultsState(searchResults);
-    document.getElementById("suggartist").value = "default";
-    document.getElementById("suggsong").value = "default";
-    return searchResults;
 }
 
 export default searchArtist;              

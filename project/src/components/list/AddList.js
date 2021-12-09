@@ -6,6 +6,7 @@ function addList(props, target) {
 
         const item = {
             title: props.title, // receive this.state.searchTitle
+            vtitle: props.vtitle,
             url: props.url, // receive this.state.searchURL
             artist: props.artist,
         }

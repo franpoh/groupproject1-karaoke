@@ -50,20 +50,20 @@ body {
   display: flex;
 }
 
-.lyricbox {
+/* .lyricbox {
   width: 500px;
   height: 500px;
-  /* background-color: rgb(238, 238, 175); */
-  /* margin: auto; */
-}
+  margin: auto;
+} */
 
 .relatedvids {
   display: flex;
   flex-flow: column;
-  width: 100px;
+  width: 500px;
   height: 500px;
   margin: auto;
   align-items: center;
+  border: 1px solid lightgrey;
 }
 
 .rvidthumbnail {
@@ -85,11 +85,12 @@ body {
   padding-left: 5px;
   display: flex;
   font-size: 17px;
-  background-color: rgb(206, 202, 206);
+  /* background-color: rgb(206, 202, 206); */
   color: black;
   border: 1px solid lightgrey;
   width: auto;
   height: auto;
+  max-width: 500px;
   align-items: flex-start;
   text-align: start;
 }

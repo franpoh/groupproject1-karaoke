@@ -1,0 +1,50 @@
+.nav-container {
+    display: block;
+    width: 100vw;
+    background-color: rgba(243, 211, 28, 0.9);
+    border: 0;
+    padding-top: 1px;
+    margin-bottom: 25px;
+}
+
+.nav-container h1{
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    margin: 0;
+}
+
+.nav-container h2{
+    font-weight: lighter;
+    font-size: x-large;
+    color: rgb(255, 30, 30);
+    padding:0;
+    border:0;
+    margin:0;
+}
+
+.menu {
+    display:flex;
+    justify-content: space-evenly;
+    padding:0;
+    margin:0;
+}
+
+.header h1 {
+    margin: 0px;
+    border: 0;
+    color: black;
+}
+
+a {
+    text-decoration: none;
+}
+
+a h1{
+    text-align: center;
+    color: rgb(255, 30, 30);
+}
+
+.content{
+    border: 0;
+    padding:0;
+    min-height: 100vh;
+}

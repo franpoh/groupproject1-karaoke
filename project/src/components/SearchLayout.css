@@ -1,76 +1,95 @@
+body {
+  /* background-color: white; */
+}
+
 .webpage {
-    display: flex;
-    flex-flow: column wrap;
-    align-items: center;
-    row-gap: 5vh;
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  row-gap: 5vh;
 }
 
 /* g1 */
-.day {    
-    background-color: white;    
-    color: black;
+.day {
+  background-color: white;
+  color: black;
 }
 
-.night {    
-    background-color: black;
-    color: white;
+.night {
+  background-color: black;
+  color: white;
 }
 
 .xmas {
-    background-color:black;
-    color: white;
+  background-color: black;
+  color: white;
 }
 
 #header {
-    text-align: center;
-    margin-bottom: 0%;
+  text-align: center;
+  margin-bottom: 0%;
 }
 
 .searchscreen {
-    display: flex;
-    column-gap: 5vw;
+  display: flex;
+  column-gap: 5vw;
 }
 
 .playerbox {
-    display: flex;
-    flex-flow: column wrap;
-    margin: auto;
-    row-gap: 5vh;
+  display: flex;
+  flex-flow: column wrap;
+  margin: auto;
+  row-gap: 5vh;
 }
 
 .topnavbar {
-    display: flex;
+  display: flex;
 }
 
 .vidnavbar {
-    display: flex;
+  display: flex;
 }
 
 .lyricbox {
-    width: 500px;
-    height: 500px;
-    background-color: rgb(238, 238, 175);
-    margin: auto;
+  width: 500px;
+  height: 500px;
+  /* background-color: rgb(238, 238, 175); */
+  /* margin: auto; */
 }
 
 .relatedvids {
-    display: flex;
-    flex-flow: column;
-    width: 300px;
-    height: 500px;
-    margin: auto;
-    align-items: center;
+  display: flex;
+  flex-flow: column;
+  width: 100px;
+  height: 500px;
+  margin: auto;
+  align-items: center;
 }
 
 .rvidthumbnail {
-    width: 250px;
-    height: 180px;
+  width: 250px;
+  height: 180px;
 }
 
 .rvidtitle {
-    font-size: 15px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 250px;
+  font-size: 15px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 250px;
+}
+
+.displayWindow2 {
+  position: relative;
+  margin: 1%;
+  padding-left: 5px;
+  display: flex;
+  font-size: 17px;
+  background-color: rgb(206, 202, 206);
+  color: black;
+  border: 1px solid lightgrey;
+  width: auto;
+  height: auto;
+  align-items: flex-start;
+  text-align: start;
 }

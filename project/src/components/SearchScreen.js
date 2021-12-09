@@ -75,7 +75,7 @@ class SearchScreen extends React.Component {
     selectListState(video) { // passing in selected video's title, url
         this.setState({
             ...this.state,
-            searchTitle: video.title,      
+            searchTitle: video.title,
             searchURL: video.url,
             searchIndex: 0, // reset searchIndex
         })
@@ -105,7 +105,7 @@ class SearchScreen extends React.Component {
 
     // execute after finding related videos to search result
     searchRVidsState(relatedVids) { // passing in searchResults object {title, url, thumbnailurl}
-        this.setState({relatedVids})
+        this.setState({ relatedVids })
     }
 
     // execute after selecting related video to play
@@ -120,7 +120,7 @@ class SearchScreen extends React.Component {
 
     // get an array of suggested artists based on song name in search
     artistResultsState(artistResults) {
-        this.setState({artistResults})
+        this.setState({ artistResults })
     }
 
     render() {
@@ -136,18 +136,18 @@ class SearchScreen extends React.Component {
         const { relatedVids } = this.state;
 
         return (
-            <div id="mainbody" className = "webpage day">                
+            <div id="mainbody" className="webpage day">
                 <h1 id="header">The Karaoke Website</h1>
                 <div className="topnavbar">
                     {/* Search Bar Input */}
                     <HandleInput
                         inputSong={inputSong}
                         inputArtist={inputArtist}
-                        artistResults = {artistResults}
+                        artistResults={artistResults}
                         handleInputState={this.handleInputState}
                         searchState={this.searchState}
                         searchRVidsState={this.searchRVidsState}
-                        artistResultsState = {this.artistResultsState}
+                        artistResultsState={this.artistResultsState}
                     />
                     {/* Favourites and History Dropdown Lists */}
                     <SelectList
@@ -185,12 +185,11 @@ class SearchScreen extends React.Component {
                                 artist={searchArtist}
                                 addListState={this.addListState}
                             />
-                            <button className="lyricbutton">Display Lyrics</button>
+                            {/* <button className="lyricbutton">Display Lyrics</button> */}
                         </div>
                     </div>
                     <div className="lyricbox">
-                        <p>This is for Aunt Pyone's lyrics</p>                        
-                        <MainScreen 
+                        <MainScreen
                             inputArtist={searchArtist}
                             inputSong={searchTitle}
                         />
@@ -199,7 +198,7 @@ class SearchScreen extends React.Component {
                         rvideos={relatedVids}
                         artistResults={artistResults}
                         selectRVidsState={this.selectRVidsState}
-                        artistResultsState = {this.artistResultsState}
+                        artistResultsState={this.artistResultsState}
                     />
                 </div>
             </div>

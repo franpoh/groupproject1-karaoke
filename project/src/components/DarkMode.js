@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import xmasImage from '../assets/christmas-1920.jpg'
 
 function DarkMode () {
 
@@ -14,12 +15,16 @@ function DarkMode () {
         if (darkMode === day) {            
             setdarkMode(night);
             setcssState('night'); // css classname night with dark background / white font 
+            document.getElementById("mainbody").style.backgroundImage = "none";
         } else if (darkMode === night) {
             setdarkMode(xmas);
             setcssState('xmas');
+            document.getElementById("mainbody").style.backgroundImage = "none";
         } else if (darkMode === xmas) {
             setdarkMode(day);
             setcssState('day');
+            // document.getElementById("mainbody").style.backgroundImage = "url('https://www.adorama.com/alc/wp-content/uploads/2018/01/best-online-free-photography-courses-feature-825x465.jpg')";
+            document.getElementById("mainbody").style.backgroundImage = `url(${xmasImage})`;
         }
         document.getElementById("mainbody").className = `webpage ${cssState}`; // add class, not override
     }    

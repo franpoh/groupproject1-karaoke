@@ -92,6 +92,7 @@ function TextToSpeech(props) {
 
         // let apikey = "5"; // false key for error testing
         let apikey = "52b16d4b4f1246ee800ea25d1b9fe536"; // key tied to g1 email
+        // let apikey = "3078a5b6303a4d8f9c134eb7e115fc41"; // key tied to g1 email2 for presentation
         // let apilang = "zh-cn";
         let apilang = "en-us";
         let apicodec = "MP3";

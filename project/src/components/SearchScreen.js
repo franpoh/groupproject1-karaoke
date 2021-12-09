@@ -137,7 +137,6 @@ class SearchScreen extends React.Component {
 
         return (
             <div id="mainbody" className="webpage day">
-                <h1 id="header">The Karaoke Website</h1>
                 <div className="topnavbar">
                     {/* Search Bar Input */}
                     <HandleInput

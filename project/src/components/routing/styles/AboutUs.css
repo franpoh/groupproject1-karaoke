@@ -1,8 +1,11 @@
 .about-container{
     display:flex;
+    width: 100vw;
+    height: 30vw;
     flex-flow: column wrap;
     align-items: center;
     justify-content: center;
+    background-color: rgba(245, 245, 220, 0.7);
 }
 
 .about-header {

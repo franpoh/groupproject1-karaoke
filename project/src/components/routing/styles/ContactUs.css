@@ -1,8 +1,11 @@
 .contact-container{
     display:flex;
+    width: 100vw;
+    height: 30vw;
     flex-flow: column wrap;
     justify-content: center;
     align-items: center;
+    background-color: rgba(245, 245, 220, 0.7);
 }
 
 .contact-header{
@@ -12,9 +15,4 @@
 
 .contact-header h2{
     margin-bottom: 20px;
-}
-
-.content p {
-    display: block;
-    width: 60vw;
 }

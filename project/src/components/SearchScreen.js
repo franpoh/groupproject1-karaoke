@@ -175,8 +175,12 @@ class SearchScreen extends React.Component {
                             {/* Previous and Next Buttons */}
                             <PrevNext
                                 prevNextState={this.prevNextState}
-                                index={searchIndex}
+                                index={searchIndex} array={this.state.searchResults}
                             />
+                            {/* <PrevNext
+                                prevNextState={this.prevNextState}
+                                index={searchIndex}
+                            /> */}
                             {/* Add to Favourites Button */}
                             <FavButton
                                 list={favourites}

@@ -6,7 +6,17 @@ import "./SearchLayout.css";
 function PrevNext(props) {
     function onSwitch(event) {
         const target = event.target;
-        const searchIndex = target.id === "next" ? props.index + 1 : props.index - 1; // passing in this.state.searchIndex value, 'next' will +1, 'prev' will -1 
+        // G1: have to change below from const to let in order for error catch to set value to index 0
+        let searchIndex = target.id === "next" ? props.index + 1 : props.index - 1; // passing in this.state.searchIndex value, 'next' will +1, 'prev' will -1
+        console.log('search index :', props.index, searchIndex);
+        console.log('searchResults? :', props.array);
+        if (props.array.length === 0) {
+            return; // G1: in event of empty searchResults
+        }
+        if (searchIndex < 0 || searchIndex > (props.array.length - 1) ) {            
+            searchIndex = 0;
+        } // G1: set index to 0 when -1 or exceed 9
+        
         props.prevNextState(searchIndex); // pass searchIndex to SearchScreen.js/prevNextState() to set this.state.searchIndex, searchTitle and searchURL
     }
 

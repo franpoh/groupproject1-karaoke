@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/groupproject1-karaoke/static/css/main.1167a93b.chunk.css",
-    "main.js": "/groupproject1-karaoke/static/js/main.0e75022a.chunk.js",
-    "main.js.map": "/groupproject1-karaoke/static/js/main.0e75022a.chunk.js.map",
-    "runtime-main.js": "/groupproject1-karaoke/static/js/runtime-main.e71c9955.js",
-    "runtime-main.js.map": "/groupproject1-karaoke/static/js/runtime-main.e71c9955.js.map",
-    "static/js/2.67dbee25.chunk.js": "/groupproject1-karaoke/static/js/2.67dbee25.chunk.js",
-    "static/js/2.67dbee25.chunk.js.map": "/groupproject1-karaoke/static/js/2.67dbee25.chunk.js.map",
-    "static/js/3.755df92c.chunk.js": "/groupproject1-karaoke/static/js/3.755df92c.chunk.js",
-    "static/js/3.755df92c.chunk.js.map": "/groupproject1-karaoke/static/js/3.755df92c.chunk.js.map",
-    "index.html": "/groupproject1-karaoke/index.html",
-    "static/css/main.1167a93b.chunk.css.map": "/groupproject1-karaoke/static/css/main.1167a93b.chunk.css.map",
-    "static/js/2.67dbee25.chunk.js.LICENSE.txt": "/groupproject1-karaoke/static/js/2.67dbee25.chunk.js.LICENSE.txt",
-    "static/media/christmas-1920.e21d8f7b.jpg": "/groupproject1-karaoke/static/media/christmas-1920.e21d8f7b.jpg",
-    "static/media/christmas-dark-1920.b58bc2e0.jpg": "/groupproject1-karaoke/static/media/christmas-dark-1920.b58bc2e0.jpg"
+    "main.css": "/project/static/css/main.1167a93b.chunk.css",
+    "main.js": "/project/static/js/main.0e75022a.chunk.js",
+    "main.js.map": "/project/static/js/main.0e75022a.chunk.js.map",
+    "runtime-main.js": "/project/static/js/runtime-main.90d30389.js",
+    "runtime-main.js.map": "/project/static/js/runtime-main.90d30389.js.map",
+    "static/js/2.ef247341.chunk.js": "/project/static/js/2.ef247341.chunk.js",
+    "static/js/2.ef247341.chunk.js.map": "/project/static/js/2.ef247341.chunk.js.map",
+    "static/js/3.755df92c.chunk.js": "/project/static/js/3.755df92c.chunk.js",
+    "static/js/3.755df92c.chunk.js.map": "/project/static/js/3.755df92c.chunk.js.map",
+    "index.html": "/project/index.html",
+    "static/css/main.1167a93b.chunk.css.map": "/project/static/css/main.1167a93b.chunk.css.map",
+    "static/js/2.ef247341.chunk.js.LICENSE.txt": "/project/static/js/2.ef247341.chunk.js.LICENSE.txt",
+    "static/media/christmas-1920.e21d8f7b.jpg": "/project/static/media/christmas-1920.e21d8f7b.jpg",
+    "static/media/christmas-dark-1920.b58bc2e0.jpg": "/project/static/media/christmas-dark-1920.b58bc2e0.jpg"
   },
   "entrypoints": [
-    "static/js/runtime-main.e71c9955.js",
-    "static/js/2.67dbee25.chunk.js",
+    "static/js/runtime-main.90d30389.js",
+    "static/js/2.ef247341.chunk.js",
     "static/css/main.1167a93b.chunk.css",
     "static/js/main.0e75022a.chunk.js"
   ]

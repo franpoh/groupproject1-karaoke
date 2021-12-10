@@ -139,6 +139,7 @@ function TextToSpeech(props) {
         }
 
         if (rcvAudio.substring(0,5) === "ERROR") {
+            console.log(rcvAudio);
             return;
             // <p>{rcvAudio} Please contact admin</p>            
         } // api has its own defined error set

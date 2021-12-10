@@ -203,7 +203,7 @@ class SearchScreen extends React.Component {
                         </div>
                         <div>
                             <h3 className="videoinfo" id="videotitle">{searchVTitle}</h3>
-                            <h3 className="videoinfo" id="videoartist">{searchArtist}</h3>
+                            <p>If lyrics cannot be found, please refine your search again!</p>
                         </div>
                     </div>
                     <MainScreen

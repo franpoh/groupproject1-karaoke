@@ -12,8 +12,8 @@
 
 /* g1 */
 .day {
-  background-color: white;
-  color: black;
+  /* background-color: white; */
+  color: rgb(255, 255, 255);
 }
 
 .night {

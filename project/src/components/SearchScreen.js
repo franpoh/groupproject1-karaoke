@@ -8,7 +8,6 @@ import Player from "./Player.js";
 import SelectList from "./list/SelectList.js";
 import HandleInput from "./searching/HandleInput"
 import RelatedVideos from "./searching/RelatedVideo";
-import Main from "./routing/Main.js";
 import MainScreen from './MainScreen';
 import DarkMode from "./DarkMode";
 
@@ -186,10 +185,6 @@ class SearchScreen extends React.Component {
                                 prevNextState={this.prevNextState}
                                 index={searchIndex} array={this.state.searchResults}
                             />
-                            {/* <PrevNext
-                                prevNextState={this.prevNextState}
-                                index={searchIndex}
-                            /> */}
                             {/* Add to Favourites Button */}
                             <FavButton
                                 list={favourites}
@@ -199,7 +194,6 @@ class SearchScreen extends React.Component {
                                 artist={searchArtist}
                                 addListState={this.addListState}
                             />
-                            {/* <button className="lyricbutton">Display Lyrics</button> */}
                         </div>
                         <div>
                             <h3 className="videoinfo" id="videotitle">{searchVTitle}</h3>

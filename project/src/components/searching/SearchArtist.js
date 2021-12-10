@@ -10,18 +10,16 @@ function searchArtist(props, video, song, event) {
             let notFound = [{ title: "Not Found", artist: "Not Found" }];
             let found = await ShazamAPI.get("/search", {
                 params: { term: song }, // pass in this.state.inputSong from searchbar
-            }).catch(() => {
-                console.log("Shazam Error 1! ", found);
-                return;
-            })
-
-            if (found === null) {
-                return;
-            } if (Object.entries(found.data).length >= 2) {
-                resolve(found);
-            } else {
-                reject(notFound);
-            }
+            }).then((found) =>{
+                if (Object.entries(found.data).length >= 2) {
+                    resolve(found);
+                } else {
+                    reject(notFound);
+                }
+            }).catch((error) => {
+                    console.log('Shazam error 429!');
+                    return;
+                });            
         })
         let response = innerP.then((found) => {
             const data = found.data.tracks.hits;

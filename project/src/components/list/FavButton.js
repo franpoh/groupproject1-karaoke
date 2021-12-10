@@ -6,6 +6,7 @@ import "../SearchLayout.css";
 function FavButton(props) {
     return (
         <button 
+            className="button"
             id="addfav" 
             onClick={(event) => {
                 addList(props, event.target.id); // pass props and event target id to AddList.js/addList()

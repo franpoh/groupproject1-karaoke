@@ -187,7 +187,7 @@ function TextToSpeech(props) {
             <div>
                 <form onSubmit={handleSubmit}>
                     {selectGender()}
-                    <input type='submit' value='Voice Reader' style={{display:waitLyrics}}/>
+                    <input className='button' type='submit' value='Voice Reader' style={{display:waitLyrics}}/>
                 </form>
                 {playAudio(rcvAudio)}
             </div>

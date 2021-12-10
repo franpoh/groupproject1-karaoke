@@ -10,15 +10,13 @@ function RelatedVideos(props) {
     function select(event) {
         let p = new Promise((resolve) => {
             const target = event.target;
-            const video = props.rvideos.find(item => item.title === target.id); // find the item in array whose song title corresponds with the id of target
+            const video = props.rvideos.find(item => item.vtitle === target.id); // find the item in array whose song title corresponds with the id of target
             resolve(video);
         })
 
-        p.then(async (res) => {
-            const sTitle = await res.title.slice(0, 30);
-            const sArtists = await searchArtist(props, sTitle); // search for artists based on this.state.searchTitle and return value
-            const artist = sArtists[0];
-            props.selectRVidsState(res, artist.artist) // set this.state.searchTitle/searchURL/searchArtist
+        p.then(async (video) => {
+            const sTitle = await video.vtitle;
+            searchArtist(props, video, sTitle, event); // search for artists based on this.state.searchTitle
         })
     }
 
@@ -27,15 +25,15 @@ function RelatedVideos(props) {
         <div className="relatedvids">
             {props.rvideos.map((item) => {
                 return (
-                    <div key={uuidv4()} id={item.title}>
+                    <div key={uuidv4()} id={item.vtitle}>
                         <img
-                            className="rvidthumbnail"
-                            id={item.title}
+                            className="rvidthumbnail rvid"
+                            id={item.vtitle}
                             src={`${item.thumbnailurl}`}
                             onClick={select}
                             alt="music video"
                         ></img>
-                        <p className="rvidtitle">{item.title}</p>
+                        <p className="rvidtitle rvid">{item.vtitle}</p>
                     </div>
                 )
             })}

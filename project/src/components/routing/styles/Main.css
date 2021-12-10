@@ -1,10 +1,11 @@
 .nav-container {
-    display: block;
+    display: flex;
+    flex-flow: column;
     width: 100vw;
-    background-color: rgba(243, 211, 28, 0.9);
+    height: 18vh;
+    background-color: rgba(24, 24, 24, 0.397);
     border: 0;
-    padding-top: 1px;
-    /* margin-bottom: 25px; G1: to remove the white bar between nav and main body*/
+    padding-top: 10px;
 }
 
 .nav-container h1{
@@ -15,10 +16,11 @@
 .nav-container h2{
     font-weight: lighter;
     font-size: x-large;
-    color: rgb(255, 30, 30);
+    color: rgb(255, 255, 255);
     padding:0;
     border:0;
     margin:0;
+    font-size: 200%;
 }
 
 .menu {
@@ -26,6 +28,7 @@
     justify-content: space-evenly;
     padding:0;
     margin:0;
+    line-height: 400%;
 }
 
 .header h1 {
@@ -40,7 +43,9 @@ a {
 
 a h1{
     text-align: center;
-    color: rgb(255, 30, 30);
+    color: rgb(255, 255, 255);
+    font-size: 400%;
+    font-weight: lighter;
 }
 
 .content{

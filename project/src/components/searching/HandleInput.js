@@ -12,7 +12,7 @@ import "../SearchLayout.css";
 
 function HandleInput(props) {
     const debouncedChangeHandler = useCallback( // a lodash function to call function once after finished typing
-        debounce((event) => artSuggest(props, event), 300)
+        debounce((event) => artSuggest(props, event), 500)
         , [props]);
 
     return (
@@ -28,10 +28,12 @@ function HandleInput(props) {
 
             <select
                 id="suggsong"
+                className="dropdown"
                 onChange={(event) => setInput(props, event)}
-                value={props.inputArtist}
+                value={props.inputSong}
+                disabled
             >
-                <option value="default" selected disabled>Suggested Songs</option>
+                <option value="default">Suggested Songs</option>
                 {props.artistResults.map((item) => {
                     return <option key={uuidv4()}>{item.title}</option>
                 })}
@@ -39,16 +41,18 @@ function HandleInput(props) {
 
             <select
                 id="suggartist"
+                className="dropdown"
                 onChange={(event) => setInput(props, event)}
                 value={props.inputArtist}
+                disabled
             >
-                <option value="default" selected disabled>Suggested Artists</option>
+                <option value="default">Suggested Artists</option>
                 {props.artistResults.map((item) => {
                     return <option key={uuidv4()}>{item.artist}</option>
                 })}
             </select>
 
-            <button id="searchbutton" disabled>Search</button>
+            <button className="button" id="searchbutton" disabled>Search</button>
         </form> // run Search.js/search() upon submission
     )
 }

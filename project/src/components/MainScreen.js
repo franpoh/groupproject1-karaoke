@@ -108,24 +108,24 @@ class OvhLyric extends React.Component {
         //     <i> by </i>
         // ));
         return (
-            <>
+            <div className="lyricbox">
                 <form onSubmit={this.handleFormSubmit}>
-                    <input type="submit" value="Display Lyrics"></input>
+                    <input className="button" type="submit" value="Display Lyrics"></input>
                 </form>
                 <div className="displayWindow2">
                     <TextToSpeech sendOutput={submitContent} />
                 </div>
-                <div className="displayWindow2" style={{display:lyrics.length===0? 'none': 'inline'}}>
+                <div className="displayWindow2" style={{ display: lyrics.length === 0 ? 'none' : 'inline' }}>
                     <textarea
                         readOnly
                         placeholder="incoming lyrics data"
                         value={lyrics}
-                        rows="34"
+                        rows="30"
                         cols="52"
                     />
                     {displayErrorMsg}
                 </div>
-            </>
+            </div>
         );
     }
 }

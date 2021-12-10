@@ -15,19 +15,19 @@ function DarkMode() {
         if (darkMode === day) {
             setdarkMode(night);
             setcssState('night'); // css classname night with dark background / white font 
-            document.getElementById("mainbody").style.backgroundImage = `url(${xmasImage2})`;            
+            document.getElementById("wholebody").style.backgroundImage = `url(${xmasImage2})`;            
         } else if (darkMode === night) {
             setdarkMode(xmas);
             setcssState('xmas');
-            document.getElementById("mainbody").style.backgroundImage = "none";
+            document.getElementById("wholebody").style.backgroundImage = "none";
             document.body.style.backgroundImage = "none";
             // document.body.style.backgroundColor = "rgba(26, 26, 26)";
         } else if (darkMode === xmas) {
             setdarkMode(day);
             setcssState('day');
-            document.getElementById("mainbody").style.backgroundImage = `url(${xmasImage})`;            
+            document.getElementById("wholebody").style.backgroundImage = `url(${xmasImage})`;            
         }
-        document.getElementById("mainbody").className = `webpage ${cssState}`; // add class, not override
+        document.getElementById("wholebody").className = `webpage ${cssState}`; // add class, not override
         document.body.style.className = `webpage ${cssState}`;
     }
 

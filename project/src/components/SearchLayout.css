@@ -160,3 +160,7 @@ textarea::-webkit-input-placeholder {
   text-align: center;
   line-height: 560px;
 }
+
+.config {
+  font-size: 10px;
+}

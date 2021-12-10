@@ -10,12 +10,16 @@ function searchArtist(props, video, song, event) {
             let notFound = [{ title: "Not Found", artist: "Not Found" }];
             let found = await ShazamAPI.get("/search", {
                 params: { term: song }, // pass in this.state.inputSong from searchbar
-            })
-            if (Object.entries(found.data).length >= 2) {
-                resolve(found);
-            } else {
-                reject(notFound);
-            }
+            }).then((found) =>{
+                if (Object.entries(found.data).length >= 2) {
+                    resolve(found);
+                } else {
+                    reject(notFound);
+                }
+            }).catch((error) => {
+                    console.log('Shazam error 429!');
+                    return;
+                });            
         })
 
         let response = innerP.then((found) => {
@@ -27,10 +31,11 @@ function searchArtist(props, video, song, event) {
                 }
             })
             return result; // searchResults = {artist}
-        }).catch((error) => {
-            console.log('Shazam error 429!');
-            return error;
-        });
+        })
+        // }).catch((error) => {
+        //     console.log('Shazam error 429!');
+        //     return error;
+        // });
 
         resolve(response);
     });

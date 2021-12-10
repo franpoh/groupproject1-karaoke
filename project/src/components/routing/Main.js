@@ -10,10 +10,11 @@ import AboutUs from "./AboutUs";
 import ContactUs from "./ContactUs";
 import "./styles/Main.css";
 
+// G1: line 17 added webpage class as otherwise header styling jumps when click on darkmode
 const Main = () => {
     return (
         <Router>
-            <div id="wholebody" className="night">
+            <div id="wholebody" className="webpage night">
                 <div className="nav-container">
                     <div className="main-header">
                         <Link to="/"><h1>The Karaoke Website</h1></Link>

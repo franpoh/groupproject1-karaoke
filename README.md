@@ -5,7 +5,7 @@
 3. [Dependencies](#dependencies)
 4. [Start Up](#start_up)
 
-# Premise
+# PREMISE
 
 To create a website where you can search for songs and the accompanying lyrics, then play the song while having a voice reader 'sing' along with you. 
 
